@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import SectionLabel from '../components/BlueprintElements/SectionLabel';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import styles from './About.module.css';
@@ -70,7 +70,7 @@ export default function About() {
   });
 
   return (
-    <motion.section
+    <m.section
       className={`${styles.page} pageShell`}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -154,6 +154,6 @@ export default function About() {
           </a>
         </div>
       </section>
-    </motion.section>
+    </m.section>
   );
 }

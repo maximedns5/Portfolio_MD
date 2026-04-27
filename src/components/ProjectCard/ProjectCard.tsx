@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getProjectPath } from '../../data/projects';
@@ -14,7 +14,7 @@ type ProjectCardProps = {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-    <motion.article
+    <m.article
       className={styles.card}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -49,6 +49,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           View project <ArrowRight size={14} />
         </span>
       </Link>
-    </motion.article>
+    </m.article>
   );
 }

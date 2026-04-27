@@ -1,3 +1,4 @@
+import { LazyMotion, domMax } from 'framer-motion';
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
@@ -13,6 +14,7 @@ const baseName = import.meta.env.BASE_URL.replace(/\/$/, '');
 export default function App() {
   return (
     <BrowserRouter basename={baseName}>
+      <LazyMotion features={domMax}>
       <Layout>
         <Suspense fallback={<div className="pageShell">Loading...</div>}>
           <Routes>
@@ -24,6 +26,7 @@ export default function App() {
           </Routes>
         </Suspense>
       </Layout>
+      </LazyMotion>
     </BrowserRouter>
   );
 }

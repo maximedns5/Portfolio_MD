@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { ProjectGroup } from '../../types/project';
@@ -13,7 +13,7 @@ type ProjectGroupCardProps = {
 
 export default function ProjectGroupCard({ group, index }: ProjectGroupCardProps) {
   return (
-    <motion.article
+    <m.article
       className={styles.card}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -50,6 +50,6 @@ export default function ProjectGroupCard({ group, index }: ProjectGroupCardProps
           </span>
         </div>
       </Link>
-    </motion.article>
+    </m.article>
   );
 }

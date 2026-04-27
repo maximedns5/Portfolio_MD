@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { useMemo, useState } from 'react';
 import type { Project, ProjectDomain } from '../../types/project';
 import ProjectCard from '../ProjectCard/ProjectCard';
@@ -36,13 +36,13 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
         ))}
       </div>
 
-      <motion.div layout className={styles.grid}>
+      <m.div layout className={styles.grid}>
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} index={index} project={project} />
           ))}
         </AnimatePresence>
-      </motion.div>
+      </m.div>
 
       {filteredProjects.length === 0 ? (
         <div className="emptyState">

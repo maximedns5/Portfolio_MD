@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CrosshairMark from '../components/BlueprintElements/CrosshairMark';
@@ -18,7 +18,7 @@ export default function Home() {
   });
 
   return (
-    <motion.div
+    <m.div
       className={styles.home}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -41,13 +41,13 @@ export default function Home() {
           </p>
         </div>
 
-        <motion.div
+          <m.div
           className={styles.scrollCue}
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
         >
           <ArrowDown size={16} />
-        </motion.div>
+        </m.div>
       </section>
 
       <section className="pageShell">
@@ -87,6 +87,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 }

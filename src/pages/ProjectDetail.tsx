@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ExternalLink, FileText, Github } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Link, Navigate, useParams } from 'react-router-dom';
@@ -39,7 +39,7 @@ export default function ProjectDetail() {
   });
 
   return (
-    <motion.article
+    <m.article
       className="pageShell"
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -146,6 +146,6 @@ export default function ProjectDetail() {
           </Link>
         ) : null}
       </nav>
-    </motion.article>
+    </m.article>
   );
 }
