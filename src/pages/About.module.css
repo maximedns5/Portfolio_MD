@@ -1,0 +1,154 @@
+.page {
+  display: grid;
+  gap: var(--space-8);
+  max-width: var(--max-width-text);
+}
+
+.hero {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.heroCopy {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.statusLabel {
+  color: var(--color-ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 60ch;
+}
+
+.section {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.timeline {
+  border-left: 1px solid var(--color-border);
+  display: grid;
+  gap: var(--space-7);
+  margin-left: 3px;
+  padding-left: var(--space-6);
+}
+
+.timelineItem {
+  position: relative;
+}
+
+.timelineMarker {
+  background: var(--color-accent);
+  border-radius: 50%;
+  height: 6px;
+  left: calc(-1 * var(--space-6) - 4px);
+  position: absolute;
+  top: 8px;
+  width: 6px;
+}
+
+.timelineContent {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.period {
+  color: var(--color-ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+}
+
+.degree {
+  font-size: var(--text-lg);
+}
+
+.institution {
+  color: var(--color-ink-light);
+}
+
+.location {
+  color: var(--color-ink-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+}
+
+.noteBadge {
+  align-items: center;
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  padding: 2px 8px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.noteBody {
+  color: var(--color-ink-light);
+  font-size: var(--text-sm);
+}
+
+.skillsGrid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.skillCard {
+  border: var(--border-thin);
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.skillLabel {
+  color: var(--color-ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.skillText {
+  font-size: var(--text-sm);
+  max-width: none;
+}
+
+.contactRow {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  color: var(--color-ink-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+}
+
+.contactRow a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.contactRow a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .skillsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

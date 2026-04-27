@@ -1,0 +1,48 @@
+.wrapper {
+  color: var(--color-ink-faint);
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  gap: var(--space-2);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.horizontal {
+  align-items: center;
+}
+
+.vertical {
+  align-items: center;
+  transform: rotate(-90deg);
+  transform-origin: left top;
+}
+
+.arrow {
+  border-top: 1px solid currentColor;
+  display: block;
+  position: relative;
+  width: 46px;
+}
+
+.arrow::before,
+.arrow::after {
+  background: currentColor;
+  content: '';
+  height: 5px;
+  position: absolute;
+  top: -3px;
+  width: 1px;
+}
+
+.arrow::before {
+  left: 0;
+}
+
+.arrow::after {
+  right: 0;
+}
+
+.label {
+  white-space: nowrap;
+}

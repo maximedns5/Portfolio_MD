@@ -1,0 +1,8 @@
+.mark {
+  color: inherit;
+  fill: none;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 1;
+  width: 24px;
+}

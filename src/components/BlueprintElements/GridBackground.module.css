@@ -1,0 +1,6 @@
+.grid {
+  color: var(--color-grid);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}

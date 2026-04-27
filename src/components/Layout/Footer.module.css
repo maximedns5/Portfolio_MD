@@ -1,0 +1,30 @@
+.footer {
+  border-top: var(--border-thin);
+  margin-top: var(--space-8);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: var(--space-6) var(--page-padding);
+}
+
+.label,
+.copy {
+  color: var(--color-ink-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

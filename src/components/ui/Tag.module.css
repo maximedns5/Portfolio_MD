@@ -1,0 +1,18 @@
+.tag {
+  background: rgba(253, 250, 244, 0.9);
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-light);
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  padding: 6px 8px;
+  text-transform: uppercase;
+}
+
+.accent {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}

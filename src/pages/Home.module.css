@@ -1,0 +1,136 @@
+.home {
+  min-height: 100vh;
+}
+
+.hero {
+  align-items: center;
+  display: grid;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: calc(var(--nav-height) + var(--space-7)) var(--page-padding) var(--space-7);
+  position: relative;
+}
+
+.heroContent {
+  display: grid;
+  gap: var(--space-4);
+  justify-self: center;
+  max-width: 720px;
+  text-align: center;
+  z-index: 1;
+}
+
+.lead {
+  color: var(--color-ink-light);
+  font-size: var(--text-md);
+  margin: 0 auto;
+}
+
+.scrollCue {
+  align-self: end;
+  color: var(--color-accent);
+  justify-self: center;
+  z-index: 1;
+}
+
+.cornerTopLeft,
+.cornerTopRight,
+.cornerBottomLeft,
+.cornerBottomRight,
+.dimensionTop,
+.dimensionSide {
+  color: var(--color-ink-faint);
+  position: absolute;
+}
+
+.cornerTopLeft {
+  left: var(--page-padding);
+  top: calc(var(--nav-height) + var(--space-4));
+}
+
+.cornerTopRight {
+  right: var(--page-padding);
+  top: calc(var(--nav-height) + var(--space-4));
+}
+
+.cornerBottomLeft {
+  bottom: var(--space-6);
+  left: var(--page-padding);
+}
+
+.cornerBottomRight {
+  bottom: var(--space-6);
+  right: var(--page-padding);
+}
+
+.dimensionTop {
+  right: var(--page-padding);
+  top: calc(var(--nav-height) + var(--space-8));
+}
+
+.dimensionSide {
+  left: calc(var(--page-padding) + 8px);
+  top: 50%;
+}
+
+.section {
+  display: grid;
+  gap: var(--space-6);
+  margin-bottom: var(--space-9);
+}
+
+.featuredGrid {
+  display: grid;
+  gap: 48px 32px;
+}
+
+.aboutTeaser {
+  align-items: start;
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6);
+}
+
+.aboutTitle {
+  margin: var(--space-2) 0 var(--space-4);
+}
+
+.inlineLink {
+  align-items: center;
+  color: var(--color-accent);
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  gap: var(--space-2);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .featuredGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .aboutTeaser {
+    grid-template-columns: minmax(0, 1.2fr) auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .featuredGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .cornerTopLeft,
+  .cornerTopRight,
+  .cornerBottomLeft,
+  .cornerBottomRight,
+  .dimensionTop,
+  .dimensionSide {
+    display: none;
+  }
+}
