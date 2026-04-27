@@ -36,7 +36,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
         ))}
       </div>
 
-      <m.div layout className={styles.grid}>
+      <m.div className={styles.grid}>
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} index={index} project={project} />
