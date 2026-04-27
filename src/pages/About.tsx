@@ -1,4 +1,3 @@
-import { m } from 'framer-motion';
 import SectionLabel from '../components/BlueprintElements/SectionLabel';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import styles from './About.module.css';
@@ -70,12 +69,7 @@ export default function About() {
   });
 
   return (
-    <m.section
-      className={`${styles.page} pageShell`}
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-    >
+    <section className={`${styles.page} pageShell fadeInUp`}>
       <div className={styles.hero}>
         <div className={styles.heroCopy}>
           <p className={styles.statusLabel}>MEng Mechanical Engineering · UC Berkeley</p>
@@ -154,6 +148,6 @@ export default function About() {
           </a>
         </div>
       </section>
-    </m.section>
+    </section>
   );
 }

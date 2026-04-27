@@ -78,6 +78,24 @@ body {
   min-height: 100vh;
 }
 
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceCue {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.35s ease-out both;
+}
+
+.bounceCue {
+  animation: bounceCue 1.8s ease-in-out infinite;
+}
+
 ::selection {
   background-color: var(--color-accent-soft);
   color: var(--color-accent);

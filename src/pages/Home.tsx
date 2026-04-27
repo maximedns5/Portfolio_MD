@@ -1,4 +1,3 @@
-import { m } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CrosshairMark from '../components/BlueprintElements/CrosshairMark';
@@ -18,12 +17,7 @@ export default function Home() {
   });
 
   return (
-    <m.div
-      className={styles.home}
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-    >
+    <div className={`${styles.home} fadeInUp`}>
       <section className={styles.hero}>
         <GridBackground />
         <CrosshairMark className={styles.cornerTopLeft} />
@@ -41,13 +35,9 @@ export default function Home() {
           </p>
         </div>
 
-          <m.div
-          className={styles.scrollCue}
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-        >
+          <div className={`${styles.scrollCue} bounceCue`}>
           <ArrowDown size={16} />
-        </m.div>
+        </div>
       </section>
 
       <section className="pageShell">
@@ -87,6 +77,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </m.div>
+    </div>
   );
 }

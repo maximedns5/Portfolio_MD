@@ -1,4 +1,3 @@
-import { m } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ExternalLink, FileText, Github } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Link, Navigate, useParams } from 'react-router-dom';
@@ -39,12 +38,7 @@ export default function ProjectDetail() {
   });
 
   return (
-    <m.article
-      className="pageShell"
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-    >
+    <article className="pageShell fadeInUp">
       <header className={styles.header}>
         <div className={styles.heading}>
           <p className="label">Ref. {String(projectIndex + 1).padStart(3, '0')}</p>
@@ -146,6 +140,6 @@ export default function ProjectDetail() {
           </Link>
         ) : null}
       </nav>
-    </m.article>
+    </article>
   );
 }

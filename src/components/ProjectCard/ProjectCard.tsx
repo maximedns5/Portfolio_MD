@@ -1,4 +1,3 @@
-import { m } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getProjectPath } from '../../data/projects';
@@ -14,12 +13,9 @@ type ProjectCardProps = {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-    <m.article
-      className={styles.card}
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: index * 0.06, ease: 'easeOut' }}
-      layout
+    <article
+      className={`${styles.card} fadeInUp`}
+      style={{ animationDelay: `${index * 0.06}s` }}
     >
       <Link className={styles.link} to={getProjectPath(project.id)}>
         <div className={styles.imageWrap}>
@@ -49,6 +45,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           View project <ArrowRight size={14} />
         </span>
       </Link>
-    </m.article>
+    </article>
   );
 }
