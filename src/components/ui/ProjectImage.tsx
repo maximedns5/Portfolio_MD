@@ -23,6 +23,9 @@ export default function ProjectImage({
 }: ProjectImageProps) {
   const [failed, setFailed] = useState(false);
 
+  // Prepend BASE_URL for absolute paths so assets resolve correctly on GitHub Pages
+  const resolvedSrc = src.startsWith('/') ? `${import.meta.env.BASE_URL}${src.slice(1)}` : src;
+
   if (failed) {
     return (
       <div className={`${styles.fallback} ${fallbackClassName ?? className ?? ''}`} role="img" aria-label={alt}>
@@ -37,7 +40,7 @@ export default function ProjectImage({
       className={className}
       loading={loading}
       onError={() => setFailed(true)}
-      src={src}
+      src={resolvedSrc}
     />
   );
 }
