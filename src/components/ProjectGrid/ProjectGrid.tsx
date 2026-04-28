@@ -3,6 +3,20 @@ import type { Project, ProjectDomain } from '../../types/project';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import styles from './ProjectGrid.module.css';
 
+const DOMAIN_LABELS: Record<string, string> = {
+  software: 'Software',
+  'machine-learning': 'Machine Learning',
+  mechanical: 'Mechanical',
+  research: 'Research',
+  design: 'Design',
+  electronic: 'Electronic',
+  other: 'Other',
+};
+
+function domainLabel(domain: string): string {
+  return DOMAIN_LABELS[domain] ?? domain.charAt(0).toUpperCase() + domain.slice(1);
+}
+
 type ProjectGridProps = {
   projects: Project[];
 };
@@ -30,7 +44,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
             onClick={() => setActiveDomain(domain as 'all' | ProjectDomain)}
             type="button"
           >
-            {domain === 'all' ? 'Tout' : domain}
+            {domain === 'all' ? 'All' : domainLabel(domain)}
           </button>
         ))}
       </div>

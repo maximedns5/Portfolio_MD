@@ -442,12 +442,12 @@ temperature, and achieves **100% ASHRAE 2021 compliance** with **PUE 1.186**.
   },
   {
     id: 'software-ml',
-    title: 'Software & Web Projects',
+    title: 'Software, ML & Web Projects',
     shortDesc:
-      'Web applications and product engineering: building energy simulators and an AI-powered caregiver support platform.',
+      'Web applications, machine learning pipelines, and physics-informed models: from building energy simulators and AI-powered platforms to neural networks trained on NASA microgravity data.',
     coverImage: '/projects/software-ml/cover.png',
-    domains: ['software'],
-    tags: ['React', 'TypeScript', 'Python', 'LLM', 'AI', 'Web App'],
+    domains: ['software', 'machine-learning'],
+    tags: ['React', 'TypeScript', 'Python', 'Keras', 'TensorFlow', 'Random Forest', 'PINN', 'LLM', 'AI'],
     featured: true,
     projects: [
       {
@@ -549,18 +549,6 @@ of AI-generated recommendations.
         links: [],
         status: 'in-progress',
       },
-    ],
-  },
-  {
-    id: 'machine-learning',
-    title: 'Machine Learning Projects',
-    shortDesc:
-      'Physics-informed neural networks, genetic algorithms, and end-to-end forecasting pipelines applied to thermal engineering and energy systems.',
-    coverImage: '/projects/machine-learning/cover.png',
-    domains: ['machine-learning'],
-    tags: ['Python', 'Keras', 'TensorFlow', 'Random Forest', 'PINN', 'Neural Networks', 'scikit-learn'],
-    featured: true,
-    projects: [
       {
         id: 'ml-thermal-engineering',
         title: 'Machine Learning for Thermal Engineering',
