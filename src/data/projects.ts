@@ -247,22 +247,22 @@ Full mechanism modeled in CATIA V5 (GSD). A three-sheet manufacturing drawing se
 ## Outcome
 The final part was validated as conformant after the full production chain.
         `,
-        coverImage: '/projects/manufacturing/mixer-bearing/cover.png',
+        coverImage: '/projects/manufacturing/mixer-bearing/cover_mixer.png',
         images: [
           {
-            src: '/projects/manufacturing/mixer-bearing/img-01.png',
-            alt: 'Engineering drawing',
-            caption: 'FIG. 01 — Engineering drawing (A3, 1:1, ISO 2768)',
+            src: '/projects/manufacturing/mixer-bearing/img-01-mixer.png',
+            alt: 'Technical drawing — Mixer Bearing',
+            caption: 'FIG. 01 — Engineering drawing (A3, 1:1, ISO 2768 MK) — AlSi13/A-S13',
           },
           {
-            src: '/projects/manufacturing/mixer-bearing/img-02.png',
-            alt: 'Raw casting',
-            caption: 'FIG. 02 — Raw aluminum casting after sand mold extraction',
+            src: '/projects/manufacturing/mixer-bearing/img-02-mixer.png',
+            alt: 'Sand casting process',
+            caption: 'FIG. 02 — Sand mold preparation and aluminum pour extraction',
           },
           {
-            src: '/projects/manufacturing/mixer-bearing/img-03.png',
-            alt: 'Turning operation',
-            caption: 'FIG. 03 — Conventional turning: finishing external diameter',
+            src: '/projects/manufacturing/mixer-bearing/img-03-mixer.png',
+            alt: 'CNC machining — 5-axis drilling',
+            caption: 'FIG. 03 — 5-axis drilling: compound-angle holes on CNC center',
           },
         ],
         links: [],
