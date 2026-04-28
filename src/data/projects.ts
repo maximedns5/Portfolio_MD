@@ -247,7 +247,7 @@ Full mechanism modeled in CATIA V5 (GSD). A three-sheet manufacturing drawing se
 ## Outcome
 The final part was validated as conformant after the full production chain.
         `,
-        coverImage: '/projects/manufacturing/mixer-bearing/cover_mixer.png',
+        coverImage: '/projects/manufacturing/mixer-bearing/Cover_mixer.png',
         images: [
           {
             src: '/projects/manufacturing/mixer-bearing/img-01-mixer.png',
