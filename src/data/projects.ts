@@ -321,20 +321,20 @@ via parametric CAD and iteratively refined for stable plasma conditions.
 The reactor was instrumented with thermocouples and flow meters.
 Measurements were correlated with COMSOL outputs to improve thermal efficiency and plasma stability.
         `,
-        coverImage: '/projects/research/hydrogen-reactor/cover.png',
+        coverImage: '/projects/research/hydrogen-reactor/cover-capstone.png',
         images: [
           {
-            src: '/projects/research/hydrogen-reactor/img-01.png',
-            alt: 'Reactor assembly',
-            caption: 'FIG. 01 — Reactor: cavity geometry and waveguide interface',
+            src: '/projects/research/hydrogen-reactor/img-01-capstone.png',
+            alt: 'Electric field in the plasma reactor — COMSOL',
+            caption: 'FIG. 01 — COMSOL: electric field distribution inside the plasma reactor',
           },
           {
-            src: '/projects/research/hydrogen-reactor/img-02.png',
-            alt: 'COMSOL results and instrumentation',
-            caption: 'FIG. 02 — COMSOL: temperature field and experimental instrumentation',
+            src: '/projects/research/hydrogen-reactor/img-02-capstone.png',
+            alt: 'Electron density in the plasma reactor — COMSOL',
+            caption: 'FIG. 02 — COMSOL: electron density field inside the plasma reactor',
           },
         ],
-        links: [],
+        links: [{ label: 'Full report — coming soon', url: '', type: 'pdf', disabled: true }],
         status: 'in-progress',
       },
       {
