@@ -495,7 +495,7 @@ Monthly consumption charts, annual summary, and sensitivity analysis.
             caption: 'FIG. 02 — Results dashboard: monthly heating and ventilation consumption',
           },
         ],
-        links: [],
+        links: [{ label: 'Live demo', url: 'https://maximedns5.github.io/ThermoSim/', type: 'demo' }],
         status: 'in-progress',
       },
       {
@@ -546,7 +546,7 @@ of AI-generated recommendations.
             caption: 'FIG. 03 — Well.Be: platform overview',
           },
         ],
-        links: [{ label: 'Well.Be', url: 'https://well.be', type: 'external' }],
+        links: [],
         status: 'in-progress',
       },
       {
