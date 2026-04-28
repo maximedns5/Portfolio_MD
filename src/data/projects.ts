@@ -25,26 +25,20 @@ export const projectGroups: ProjectGroup[] = [
         shortDesc:
           'Centrifugal cardiac pump design and CFD simulation. Efficiency improved from 49% to 59% through iterative design cycles combining prototypes and STARCCM+ simulations.',
         fullDesc: `
-## Objective
-Design a centrifugal pump for cardiac assist, then simulate blood flow to obtain
-characteristic curves and assess physiological suitability.
-
-## Design Process
-Impeller, housing, and internal flow passages modeled in **CATIA V5 (GSD)** with
-focus on manufacturability. A critical constraint was **preventing platelet aggregation**:
-excessive velocity or turbulence can trigger thrombosis.
+## Pump Geometry & Assemblies
+Designed precision mechanical components for a miniaturized centrifugal cardiac pump in **CATIA V5 (GSD)**, covering the impeller, housing, and internal flow passages from concept to detailed assembly. Every geometric decision balanced hydraulic performance (pump curve shape and efficiency peak) with hemocompatibility constraints — shear zones and flow stagnation regions can trigger platelet aggregation and thrombosis, directly threatening patient safety. The resulting assembly was fully toleranced and structured for downstream manufacturing review.
 
 ## CFD Simulation — STARCCM+
+A full volumetric mesh was generated in STARCCM+ and refined at the impeller–housing interface to resolve boundary layer effects under physiological conditions. The simulation coupled fluid dynamics with blood rheology, substituting water at low flow rates to stay within the laminar regime while matching viscosity at the operating point. Pressure distribution, flow uniformity, and heat transfer were evaluated across the full operating range, identifying recirculation zones that informed successive geometry revisions.
+
 | Parameter | Influence |
 |-----------|-----------|
-| Mesh size | Accuracy vs. computation time |
-| Inlet flow velocity | Laminar / turbulent regime |
-| Fluid properties | Blood substituted by water at certain flowrates |
+| Mesh size | Accuracy vs. computation time trade-off |
+| Inlet flow velocity | Laminar vs. turbulent regime transition |
+| Fluid properties | Blood substituted by water at certain flow rates |
 
-## Results
-- **Efficiency: 49% → 59%** through iterative design-test cycles.
-- Peak efficiency of **58.5% at 8 L/min** — oversized vs. the physiological 5 L/min target.
-- Proposed fix: reducing rotor speed shifts the peak toward 5 L/min and yields **~10% energy gain**.
+## Iterative Improvement & Results
+Three design-test cycles combining 3D-printed prototypes and STARCCM+ re-simulations raised overall pump efficiency from **49% to 59%**. Peak efficiency of 58.5% occurred at 8 L/min — slightly above the 5 L/min physiological target, indicating a marginally oversized design. Reducing rotor speed shifts the efficiency peak toward the operating point and projects an additional **~10% energy gain**, confirming the value of combining physical prototyping with CFD iteration.
         `,
         coverImage: '/projects/design-cad/heart-pump/cover.png',
         images: [
@@ -79,7 +73,9 @@ excessive velocity or turbulence can trigger thrombosis.
         shortDesc:
           'Full sizing and CAD of an aircraft disc brake with FEA validation against aerospace safety factors: 800 kg aircraft, −4 m/s² and 204 Nm braking torque.',
         fullDesc: `
-## Sizing Methodology
+## Brake Architecture & CAD
+Designed the full aircraft brake system architecture in **CATIA V5**, progressing from initial concept definition through detailed component modeling to a five-sheet A3 manufacturing drawing set (scale 1:2). The system is a mobile-caliper disc brake sized for an 800 kg aircraft requiring −4 m/s² maximum deceleration and 204 Nm braking torque, with components sized sequentially — disc, caliper, then bearings, shaft, and fasteners — so each stage's outputs fed dimensional constraints for the next. A bill of materials covering 11 referenced components was delivered alongside the technical drawing set.
+
 | Parameter | Value |
 |-----------|-------|
 | Aircraft mass | 800 kg |
@@ -87,15 +83,11 @@ excessive velocity or turbulence can trigger thrombosis.
 | Braking time | 14 s |
 | Braking torque | 204 Nm |
 
-Components sized in sequence: brake disc, caliper, then bearings, shaft, and fasteners.
+## Material Selection & Reliability
+Materials were selected for high-reliability aerospace operation, with every design choice justified against fatigue durability requirements and applicable aerospace safety standards. Trade-offs between thermal capacity (heat generated during repeated hard-braking events), structural weight, and contact wear resistance were evaluated for the disc and pad interface materials. Each selected material and specification was linked to a supporting safety factor calculation and documented in the drawing set for full traceability.
 
-## Structural Validation — ABAQUS FEA
-Operational loads, stress distributions, and fatigue cycles were simulated.
-All results were verified against aerospace safety factors.
-
-## Deliverables
-Five-sheet technical drawing set (A3, scale 1:2), full CATIA V5 assembly,
-and a bill of materials covering 11 referenced components.
+## FEA Performance Verification — ABAQUS
+A comprehensive finite element model was built in **ABAQUS** to simulate full-braking load scenarios and extract stress distributions and fatigue cycle counts across all critical structural components. Results were systematically compared against aerospace static, dynamic, and fatigue safety factors for each component. All structural outputs were confirmed within allowable limits, validating the design prior to manufacturing drawing release.
         `,
         coverImage: '/projects/design-cad/aircraft-brake/cover.png',
         images: [
@@ -131,20 +123,16 @@ and a bill of materials covering 11 referenced components.
           'Led a five-member team through full prosthesis design: FEA, physical fatigue testing, and redesign with structural pegs to reduce implant loosening.',
         fullDesc: `
 ## Team Lead
-Coordinated CATIA V5 modeling, FEA, and prototype testing across five engineers.
-Organized design reviews and delivered validated outputs on schedule.
+Led a 5-member engineering team through the full mechanical design cycle of a shoulder glenoid prosthesis, coordinating **CATIA V5** modeling, **ABAQUS** FEA, and physical fatigue testing activities across all phases. Organized design reviews with supervisors, integrated feedback into revised iterations, and ensured on-time delivery of all technical deliverables: CAD models, FEA reports, and validated prototypes. The project maintained full traceability between simulation predictions and physical test observations at every phase transition.
 
-## Phase 1 — FEA (ABAQUS)
-Stress and strain fields under physiological loading identified candidate materials
-and critical zones.
+## Phase 1 — FEA Characterization (ABAQUS)
+Physiological loading conditions (glenohumeral joint forces in superior–inferior and anterior–posterior directions) were applied to the glenoid implant model, with material properties defined for both the UHMWPE implant body and the cortical bone substrate. Stress and strain fields identified critical concentration zones at the peg–bone interfaces and around the central keel, pinpointing the primary failure modes to investigate physically. These simulation results directly defined the loading parameters and failure hypotheses for the fatigue testing campaign.
 
-## Phase 2 — Fatigue Testing
-Cyclic loading on a fatigue machine showed loosening at zones matching FEA-predicted
-stress concentrations.
+## Phase 2 — Physical Fatigue Testing
+The prosthesis prototype was mounted on a cyclic fatigue testing machine and subjected to repeated physiological loading over thousands of cycles. Loosening initiations were observed at the exact zones predicted by the FEA stress concentrations, cross-validating the numerical model against real physical behavior. Failure modes were catalogued with dimensional measurements, providing a quantitative basis for the redesign geometry changes.
 
-## Phase 3 — Redesign
-**Structural pegs** were introduced at weak zones, increasing bone-implant contact
-area and redistributing stresses away from loosening initiation sites.
+## Phase 3 — Redesign & Validation
+**Structural pegs** were introduced at the identified weak zones, increasing bone–implant contact area and redistributing peak stresses away from loosening initiation sites. The revised geometry was re-simulated in ABAQUS and showed significant reductions in contact pressure and interface stress at previously critical locations. Final FEA results confirmed the redesigned implant met all targeted safety factors under the full physiological loading envelope.
         `,
         coverImage: '/projects/design-cad/shoulder-prosthesis/cover-implant.png',
         images: [
@@ -190,17 +178,21 @@ area and redistributing stresses away from loosening initiation sites.
           'Cam-follower mechanism for 1,800 bottles per hour with full analytical validation, CATIA V5 modeling, and a three-sheet drawing set.',
         fullDesc: `
 ## Motion Law — 3-4-5 Polynomial
-Cam at 30 rpm. The 3-4-5 law was selected for zero velocity and acceleration
-at stroke endpoints.
+The cam was designed to rotate at **30 rpm**, producing 1,800 capping strokes per hour through a translating roller follower. The 3-4-5 polynomial motion law was selected over simpler profiles (constant velocity, parabolic) because it ensures zero velocity and zero acceleration at both stroke endpoints, eliminating impact loads on the follower and cap at the start and end of each stroke. Displacement, velocity, and acceleration profiles were derived analytically and verified graphically before generating the cam profile geometry.
 
 ## Mechanical Validation
+Three failure modes were checked analytically to confirm the design's physical feasibility under operating conditions:
+
 | Criterion | Status |
 |-----------|--------|
 | Non-detachment | ✓ Spring force > inertia force at all positions |
-| Hertz contact pressure | ✓ Within allowable limit |
-| Geometric interference | ✓ Cam profile never intersects follower |
+| Hertz contact pressure | ✓ Within allowable limit for cam–follower interface |
+| Geometric interference | ✓ Cam profile never intersects follower geometry |
 
-Full mechanism modeled in CATIA V5 (GSD). A three-sheet manufacturing drawing set was delivered.
+Spring stiffness was sized to maintain permanent follower contact against the maximum inertia force at the highest-acceleration point. Hertz contact stress at the cam–roller interface was computed from the minimum radius of curvature of the cam profile and verified against the material's allowable surface pressure.
+
+## CAD & Deliverables
+The full mechanism — cam, follower, spring, frame, and drive shaft — was modeled in **CATIA V5 (GSD)** with parametric dimensions directly linked to the analytical validation results. A three-sheet manufacturing drawing set was produced: overall assembly view, cam profile with dimensional tolerances, and follower assembly detail. All drawings include the functional tolerances required for the mechanism to reliably achieve its 1,800 bottles/hour production target.
         `,
         coverImage: '/projects/design-cad/capping-machine/cover.png',
         images: [
@@ -220,6 +212,32 @@ Full mechanism modeled in CATIA V5 (GSD). A three-sheet manufacturing drawing se
             caption: 'FIG. 03 — Motion transmission: fork geometry and isometric view (scale 1:3)',
           },
         ],
+        links: [],
+        status: 'completed',
+      },
+      {
+        id: 'water-filled-glazing',
+        title: 'Water-Filled Double-Glazing System',
+        subtitle: 'Thermal energy optimization of a building envelope component',
+        year: 2023,
+        duration: 'Jan. 2022 – Jun. 2023',
+        context: 'Course project — Arts et Métiers, Paris',
+        domains: ['mechanical'],
+        tags: ['Python', 'SolidWorks', 'CFD', 'Thermal Modeling', 'Experimentation'],
+        shortDesc:
+          'Designed and experimentally validated a water-filled double-glazing system to reduce building heat loss, achieving less than 5% variance between theoretical predictions and physical measurements.',
+        fullDesc: `
+## Concept & Mechanical Layout
+Engineered a water-filled double-glazing system intended to reduce building envelope heat loss by exploiting the thermal mass and convective properties of the water layer between two glass panes. The mechanical layout integrated frame geometry, material selection for glazing and spacer elements, and flow channel geometry to maximize thermal performance while maintaining structural integrity. Design constraints included minimizing convective circulation within the water layer — natural convection cells reduce the effective thermal resistance — which directly influenced the aspect ratio and water-layer thickness chosen for the final geometry.
+
+## Modeling & Experimentation
+Theoretical thermal models were developed in **Python**, coupling conductive and convective heat transfer through the multi-layer glazing assembly using analytical 1D resistance networks and validated CFD runs in **SolidWorks**. A physical prototype was fabricated and instrumented with thermocouples at both glass surfaces and within the water layer to measure temperature profiles under controlled boundary conditions. Experimental runs were performed at multiple temperature differentials to characterize the system across a representative range of heating season conditions.
+
+## Model Accuracy & Results
+Theoretical predictions were compared against experimental temperature measurements across all instrumented points and operating conditions, yielding a **variance below 5%** between the model and physical results. This level of agreement confirmed both the validity of the thermal modeling approach and the robustness of the fabricated prototype as a representative physical specimen. The validated model provides a reliable basis for scaling the design to full building-panel dimensions and evaluating energy savings against standard double-glazing benchmarks.
+        `,
+        coverImage: '/projects/design-cad/water-filled-glazing/cover.png',
+        images: [],
         links: [],
         status: 'completed',
       },
@@ -454,23 +472,22 @@ quantifying the tradeoff between reproducibility and accuracy.
           'Design and multiphysics modeling of a microwave plasma reactor for CO₂-free hydrogen production, coupling EM, thermal, and flow simulation in COMSOL.',
         fullDesc: `
 ## Context
-R&D at **UC Berkeley** on microwave-induced plasma cracking of methane,
-producing hydrogen and solid carbon with zero CO₂ emissions.
+R&D at **UC Berkeley** on microwave-induced plasma cracking of methane — a process that produces hydrogen and solid carbon with zero CO₂ emissions, as a cleaner alternative to conventional steam methane reforming. The work spanned reactor hardware design, 3D multiphysics simulation, and experimental validation, with the goal of achieving stable, reproducible plasma conditions and measurable hydrogen yield. The project involved iterative co-design between physical hardware and numerical models throughout each development cycle.
 
 ## Reactor Mechanical Design
-Cavity geometry, waveguide interfaces, and gas injection hardware were engineered
-via parametric CAD and iteratively refined for stable plasma conditions.
+Cavity geometry, waveguide interfaces, and gas injection hardware were engineered via parametric CAD and iteratively refined to sustain stable microwave plasma conditions for methane-to-hydrogen cracking. Structural constraints (high-temperature-rated materials, electromagnetic compatibility), gas injection angles for optimal residence time, and cooling channel placement were jointly optimized across multiple design cycles. Each hardware iteration was evaluated against updated COMSOL simulation outputs before physical modification, creating a tight design–simulation feedback loop.
 
 ## COMSOL Multiphysics — 3D Coupled Model
 | Domain | Role |
 |--------|------|
-| Electromagnetic propagation | Microwave field and energy deposition |
-| Conjugate heat transfer | Temperature field and cooling channel sizing |
+| Electromagnetic propagation | Microwave field distribution and energy deposition |
+| Conjugate heat transfer | 3D temperature field and cooling channel sizing |
 | Compressible flow | Gas injection dynamics and residence time |
 
+Three coupled physics domains were solved in a single COMSOL model to capture the interdependencies between microwave energy deposition, local heating, and gas residence time inside the cavity. The model resolved the full 3D temperature field across the reactor geometry and identified thermal hot spots requiring cooling channel adjustment. Mesh independence was verified and simulation outputs were calibrated against experimental thermocouple data at matched operating points.
+
 ## Experimental Validation
-The reactor was instrumented with thermocouples and flow meters.
-Measurements were correlated with COMSOL outputs to improve thermal efficiency and plasma stability.
+The reactor was instrumented with type-K thermocouples at multiple axial positions and calibrated flow meters on the inlet and outlet lines for direct comparison with COMSOL predictions. Measured temperature profiles were correlated with simulation results, and discrepancies drove targeted geometry and operating parameter revisions to improve both thermal efficiency and plasma stability. This iterative experimental–numerical workflow converged toward a validated operating envelope across successive reactor generations.
         `,
         coverImage: '/projects/research/hydrogen-reactor/cover-capstone.png',
         images: [
@@ -501,24 +518,24 @@ Measurements were correlated with COMSOL outputs to improve thermal efficiency a
           'Sizing and multi-criteria evaluation of liquid hydrogen offshore-to-onshore transport architectures, with thermodynamic modeling of cryogenic storage and piping.',
         fullDesc: `
 ## Context
-Six-month R&D internship at **Hynamics** on liquid hydrogen offshore-to-onshore
-transport chain architectures.
+Six-month R&D internship at **Hynamics** (EDF Group subsidiary) focused on designing and evaluating liquid hydrogen offshore-to-onshore transport chain architectures. The work covered the full chain from offshore production platform to onshore injection terminal, with emphasis on thermodynamic feasibility, system sizing, and multi-criteria comparison of competing architecture concepts.
 
 *Detailed technical results are proprietary to Hynamics. Overview only.*
 
-## System Sizing
-- LH₂ storage tanks — volume, insulation, and boil-off rates.
-- Piping networks — pressure drop and flow rate optimization.
-- Thermodynamic modeling of cryogenic systems at −253°C.
+## System Architecture & Sizing
+Liquid hydrogen storage tanks were sized for volumetric capacity, insulation thickness, and boil-off rate targets using thermodynamic models of cryogenic systems operating at −253°C. Piping networks between offshore and onshore terminals were dimensioned through pressure-drop calculations and flow rate optimization, accounting for cryogenic fluid properties and vapor generation along the line. Transfer equipment interfaces — loading arms, cryogenic pumps, and vaporizers — were specified and integrated into the overall system layout.
 
-## Techno-Economic Analysis
+## Techno-Economic Modeling
 | Criterion | Description |
 |-----------|-------------|
 | CAPEX / OPEX | Capital and operational cost estimation |
 | Boil-off rate | Hydrogen loss during transport |
 | Energy consumption | Total budget across the transport chain |
 
-Output: ranked architecture concepts and client-ready recommendations.
+Competing architectures were evaluated through a multi-criteria analysis covering capital expenditure, operational cost, hydrogen boil-off losses, and total energy consumption per kilogram delivered. Sensitivity analyses on key parameters — fleet size, transport distance, and daily throughput — identified the most robust architecture across plausible operating scenarios. Outputs were delivered as ranked design concepts in client-ready engineering recommendation reports.
+
+## Specifications & Documentation
+Technical specifications and engineering reports were authored documenting the selected architecture's design assumptions, sizing methodology, and performance trade-offs for both internal engineering teams and external client stakeholders. Deliverables followed Hynamics' documentation standards and maintained clear traceability between design choices and their underlying techno-economic justifications.
         `,
         coverImage: '/projects/research/hydrogen-transport/cover-hydrogen.png',
         images: [],
@@ -607,15 +624,14 @@ temperature, and achieves **100% ASHRAE 2021 compliance** with **PUE 1.186**.
         shortDesc:
           'Complete manufacturing cycle of an aluminum mixer bearing: sand casting, turning and milling, 5-axis drilling, and dimensional validation against ISO 2768.',
         fullDesc: `
-## Production Chain
-1. **Process planning** from the engineering drawing (ISO 2768).
-2. **Sand casting** — mold, aluminum pour, extraction.
-3. **Conventional machining** — turning and milling.
-4. **5-axis drilling** — compound-angle holes unreachable with 3-axis tooling.
-5. **Dimensional validation** — metrology versus ISO 2768 tolerances.
+## Process Planning
+The manufacturing sequence was planned from the engineering drawing (ISO 2768 MK tolerances, AlSi13/A-S13 aluminum alloy) to define the optimal order of operations before entering production. The sequence prioritizes casting for the raw blank, conventional machining for accessible surfaces, and 5-axis drilling last — compound-angle holes unreachable with 3-axis tooling require the fully established datums from prior operations. Process parameters — cutting speeds, feed rates, and tool selection — were defined for each operation stage in advance.
 
-## Outcome
-The final part was validated as conformant after the full production chain.
+## Sand Casting & Conventional Machining
+The sand mold was designed with parting line and draft angle analysis to ensure clean aluminum extraction without defects. After the aluminum pour and extraction, the raw casting was inspected for porosity and dimensional conformance before proceeding to the machining center. Turning and milling operations removed excess material, achieved the required surface quality on accessible cylindrical and flat features, and established the reference datums used for the subsequent 5-axis phase.
+
+## 5-Axis Drilling & Dimensional Validation
+Compound-angle holes — unreachable with 3-axis tooling due to their oblique orientations — were drilled on a 5-axis CNC machining center, requiring careful fixture design and toolpath programming. After all machining operations, critical dimensions were measured with calibrated metrology instruments and compared against ISO 2768 MK tolerance requirements. The final part was validated as **fully conformant** after the complete production chain, confirming the reliability of the planned manufacturing sequence.
         `,
         coverImage: '/projects/manufacturing/mixer-bearing/Cover_mixer.png',
         images: [

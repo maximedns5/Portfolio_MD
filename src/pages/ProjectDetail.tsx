@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, ExternalLink, FileText, Github } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import ImageGallery from '../components/ui/ImageGallery';
 import Button from '../components/ui/Button';
@@ -111,6 +112,7 @@ export default function ProjectDetail() {
           </div>
         ) : null}
         <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
           components={{
             h2: ({ children }) => (
               <div className={styles.markdownSection}>
@@ -120,6 +122,11 @@ export default function ProjectDetail() {
             ),
             li: ({ children }) => <li className={styles.listItem}>{children}</li>,
             code: ({ children }) => <code className={styles.inlineCode}>{children}</code>,
+            table: ({ children }) => (
+              <div className={styles.tableWrapper}>
+                <table className={styles.table}>{children}</table>
+              </div>
+            ),
           }}
         >
           {project.fullDesc}
