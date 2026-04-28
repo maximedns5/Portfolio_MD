@@ -421,18 +421,18 @@ temperature, and achieves **100% ASHRAE 2021 compliance** with **PUE 1.186**.
         images: [
           {
             src: '/projects/research/datacenter-thermal/img-01-datacenter.png',
-            alt: 'COP versus wet-bulb temperature curve',
-            caption: 'FIG. 01 — System COP vs. wet-bulb temperature across operating modes',
+            alt: 'Reality DC baseline temperature field with hot-aisle recirculation',
+            caption: 'FIG. 01 — Reality DC baseline temperature field with hot-aisle recirculation',
           },
           {
             src: '/projects/research/datacenter-thermal/img-02-datacenter.png',
-            alt: 'Reality DC baseline temperature field',
-            caption: 'FIG. 02 — Reality DC baseline temperature field with hot-aisle recirculation',
+            alt: 'System COP vs. wet-bulb temperature curve',
+            caption: 'FIG. 02 — System COP vs. wet-bulb temperature across operating modes',
           },
           {
             src: '/projects/research/datacenter-thermal/img-03-datacenter.png',
-            alt: 'Cold-aisle containment results',
-            caption: 'FIG. 03 — Cold-aisle containment: ASHRAE compliance and PUE 1.186',
+            alt: 'Chip temperature modeling in a medium',
+            caption: 'FIG. 03 — Chip temperature field modeling in a medium',
           },
         ],
         links: [{ label: 'Full report (PDF)', url: '/projects/research/datacenter-thermal/report-datacenter.pdf', type: 'pdf' }],
