@@ -146,22 +146,32 @@ stress concentrations.
 **Structural pegs** were introduced at weak zones, increasing bone-implant contact
 area and redistributing stresses away from loosening initiation sites.
         `,
-        coverImage: '/projects/design-cad/shoulder-prosthesis/cover.png',
+        coverImage: '/projects/design-cad/shoulder-prosthesis/cover-implant.png',
         images: [
           {
-            src: '/projects/design-cad/shoulder-prosthesis/img-01.png',
+            src: '/projects/design-cad/shoulder-prosthesis/img-01-implant.png',
             alt: 'CATIA prosthesis drawing',
             caption: 'FIG. 01 — CATIA V5: prosthesis technical drawing (scale 7:1)',
           },
           {
-            src: '/projects/design-cad/shoulder-prosthesis/img-02.png',
+            src: '/projects/design-cad/shoulder-prosthesis/img-02-implant.png',
             alt: 'ABAQUS stress field',
             caption: 'FIG. 02 — FEA: stress field and deformation (ABAQUS)',
           },
           {
-            src: '/projects/design-cad/shoulder-prosthesis/img-03.png',
-            alt: 'Fatigue test',
+            src: '/projects/design-cad/shoulder-prosthesis/img-03-implant.png',
+            alt: 'Fatigue test setup',
             caption: 'FIG. 03 — Fatigue testing: glenoid loosening under cyclic loading',
+          },
+          {
+            src: '/projects/design-cad/shoulder-prosthesis/img-04-implant.png',
+            alt: 'Redesign — structural pegs',
+            caption: 'FIG. 04 — Redesign: structural pegs reducing bone-implant loosening',
+          },
+          {
+            src: '/projects/design-cad/shoulder-prosthesis/img-05-implant.png',
+            alt: 'Final validation results',
+            caption: 'FIG. 05 — Final stress redistribution after peg integration',
           },
         ],
         links: [],
