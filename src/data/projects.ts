@@ -482,15 +482,15 @@ Monthly consumption charts, annual summary, and sensitivity analysis.
 
 *Currently running locally — live demo link to be added on deployment.*
         `,
-        coverImage: '/projects/software-ml/building-thermal/cover.png',
+        coverImage: '/projects/software-ml/building-thermal/thermosim/cover.png',
         images: [
           {
-            src: '/projects/software-ml/building-thermal/img-01.png',
+            src: '/projects/software-ml/building-thermal/thermosim/img-01.png',
             alt: 'Building configurator UI',
             caption: 'FIG. 01 — Building configurator: floors, insulation, and window selection',
           },
           {
-            src: '/projects/software-ml/building-thermal/img-02.png',
+            src: '/projects/software-ml/building-thermal/thermosim/img-02.png',
             alt: 'Energy results dashboard',
             caption: 'FIG. 02 — Results dashboard: monthly heating and ventilation consumption',
           },

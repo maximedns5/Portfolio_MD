@@ -70,6 +70,7 @@ export default function ProjectDetail() {
                   href={link.url}
                   rel="noreferrer"
                   target="_blank"
+                  accent={link.type === 'demo'}
                 >
                   <Icon size={14} />
                   {link.label}
