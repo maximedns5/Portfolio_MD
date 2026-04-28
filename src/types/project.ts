@@ -10,6 +10,7 @@ export type ProjectLink = {
   label: string;
   url: string;
   type: 'github' | 'pdf' | 'demo' | 'external';
+  disabled?: boolean;
 };
 
 export type ProjectImage = {

@@ -628,20 +628,20 @@ quantifying the tradeoff between reproducibility and accuracy.
 - Random Forest consistently outperforms linear baselines.
 - Shareable result tables and structured reports were produced for collaboration.
         `,
-        coverImage: '/projects/software-ml/electricity-forecasting/cover.png',
+        coverImage: '/projects/software-ml/electricity-forecasting/cover-tetouan.png',
         images: [
           {
-            src: '/projects/software-ml/electricity-forecasting/img-01.png',
-            alt: 'EDA temporal patterns',
-            caption: 'FIG. 01 — Exploratory analysis: temporal consumption patterns across zones',
+            src: '/projects/software-ml/electricity-forecasting/img-01-tetouan.png',
+            alt: 'Random Forest prediction — three zones',
+            caption: 'FIG. 01 — Random Forest: predicted vs actual consumption across three zones',
           },
           {
-            src: '/projects/software-ml/electricity-forecasting/img-02.png',
-            alt: 'Random Forest results',
-            caption: 'FIG. 02 — Random Forest: predicted vs actual consumption and feature importance',
+            src: '/projects/software-ml/electricity-forecasting/img-02-tetouan.png',
+            alt: 'Feature importance',
+            caption: 'FIG. 02 — Feature importance: influence of parameters on predicted consumption',
           },
         ],
-        links: [],
+        links: [{ label: 'Full report — coming soon', url: '', type: 'pdf', disabled: true }],
         status: 'completed',
       },
     ],

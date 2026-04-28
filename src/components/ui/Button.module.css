@@ -28,7 +28,16 @@
   color: var(--color-surface);
 }
 
-.accent:hover {
-  background: transparent;
-  color: var(--color-accent);
+.button:disabled,
+.button[disabled] {
+  border-color: var(--color-border);
+  color: var(--color-ink-faint);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button:disabled:hover,
+.button[disabled]:hover {
+  border-color: var(--color-border);
+  color: var(--color-ink-faint);
 }

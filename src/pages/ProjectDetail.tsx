@@ -64,6 +64,14 @@ export default function ProjectDetail() {
           <div className={styles.linkStack}>
             {project.links.map((link) => {
               const Icon = linkIcons[link.type];
+              if (link.disabled) {
+                return (
+                  <Button key={link.label} disabled>
+                    <Icon size={14} />
+                    {link.label}
+                  </Button>
+                );
+              }
               return (
                 <Button
                   key={`${link.label}-${link.url}`}
