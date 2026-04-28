@@ -528,17 +528,22 @@ of AI-generated recommendations.
 
 *Platform is in private beta — screenshots show the interface at a high level.*
         `,
-        coverImage: '/projects/software-ml/wellbe/cover.png',
+        coverImage: '/projects/software-ml/wellbe/cover-well.be.png',
         images: [
           {
-            src: '/projects/software-ml/wellbe/img-01.png',
+            src: '/projects/software-ml/wellbe/img-01-well.be.png',
             alt: 'Well.Be dashboard',
             caption: 'FIG. 01 — Well.Be: caregiver journey dashboard',
           },
           {
-            src: '/projects/software-ml/wellbe/img-02.png',
+            src: '/projects/software-ml/wellbe/img-02-well.be.png',
             alt: 'AI feedback view',
             caption: 'FIG. 02 — Well.Be: AI-generated feedback and recommendations',
+          },
+          {
+            src: '/projects/software-ml/wellbe/img-03-well.be.png',
+            alt: 'Well.Be platform view',
+            caption: 'FIG. 03 — Well.Be: platform overview',
           },
         ],
         links: [{ label: 'Well.Be', url: 'https://well.be', type: 'external' }],
