@@ -417,25 +417,25 @@ onto the Blasius curve.
 Cold-aisle containment eliminates hot-air recirculation, lowers maximum cabinet inlet
 temperature, and achieves **100% ASHRAE 2021 compliance** with **PUE 1.186**.
         `,
-        coverImage: '/projects/research/datacenter-thermal/cover.png',
+        coverImage: '/projects/research/datacenter-thermal/cover-datacenter.png',
         images: [
           {
-            src: '/projects/research/datacenter-thermal/img-01.png',
+            src: '/projects/research/datacenter-thermal/img-01-datacenter.png',
             alt: 'COP versus wet-bulb temperature curve',
             caption: 'FIG. 01 — System COP vs. wet-bulb temperature across operating modes',
           },
           {
-            src: '/projects/research/datacenter-thermal/img-02.png',
+            src: '/projects/research/datacenter-thermal/img-02-datacenter.png',
             alt: 'Reality DC baseline temperature field',
             caption: 'FIG. 02 — Reality DC baseline temperature field with hot-aisle recirculation',
           },
           {
-            src: '/projects/research/datacenter-thermal/img-03.png',
+            src: '/projects/research/datacenter-thermal/img-03-datacenter.png',
             alt: 'Cold-aisle containment results',
             caption: 'FIG. 03 — Cold-aisle containment: ASHRAE compliance and PUE 1.186',
           },
         ],
-        links: [],
+        links: [{ label: 'Full report (PDF)', url: '/projects/research/datacenter-thermal/report-datacenter.pdf', type: 'pdf' }],
         status: 'completed',
       },
     ],
