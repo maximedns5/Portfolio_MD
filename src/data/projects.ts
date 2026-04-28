@@ -583,22 +583,17 @@ Three wiring modes classified via a softmax output with dropout added to mitigat
         coverImage: '/projects/software-ml/ml-thermal-engineering/cover.png',
         images: [
           {
-            src: '/projects/software-ml/ml-thermal-engineering/img-01.png',
-            alt: 'Genetic algorithm convergence',
-            caption: "FIG. 01 — P1: genetic algorithm convergence and q'' vs ΔT fit",
+            src: '/projects/software-ml/ml-thermal-engineering/img-01-ml.png',
+            alt: 'Measured vs predicted — training and validation',
+            caption: 'FIG. 01 — Neural network: measured vs predicted output (training & validation)',
           },
           {
-            src: '/projects/software-ml/ml-thermal-engineering/img-02.png',
-            alt: 'PINN temperature field',
-            caption: 'FIG. 02 — P3: PINN-predicted 2D temperature field',
-          },
-          {
-            src: '/projects/software-ml/ml-thermal-engineering/img-03.png',
-            alt: 'PV panel prediction surface',
-            caption: 'FIG. 03 — P3: PV panel power surface predicted by the model',
+            src: '/projects/software-ml/ml-thermal-engineering/img-02-ml.png',
+            alt: 'PINN 2D temperature heatmap',
+            caption: 'FIG. 02 — PINN: 2D temperature field heatmap',
           },
         ],
-        links: [],
+        links: [{ label: 'Full report (PDF)', url: '/projects/software-ml/ml-thermal-engineering/thermal-systems-ml.pdf', type: 'pdf' }],
         status: 'completed',
       },
       {
