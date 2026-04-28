@@ -580,7 +580,7 @@ temperature, and achieves **100% ASHRAE 2021 compliance** with **PUE 1.186**.
             caption: 'FIG. 03 — Chip temperature field modeling in a medium',
           },
         ],
-        links: [{ label: 'Full report (PDF)', url: '/projects/research/datacenter-thermal/report-datacenter.pdf', type: 'pdf' }],
+        links: [{ label: 'Full report (PDF)', url: 'Portfolio_MD/projects/research/datacenter-thermal/report-datacenter.pdf', type: 'pdf' }],
         status: 'completed',
       },
     ],
