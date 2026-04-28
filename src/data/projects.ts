@@ -378,7 +378,7 @@ Three wiring modes classified via a softmax output with dropout added to mitigat
             caption: 'FIG. 02 — PINN: 2D temperature field heatmap',
           },
         ],
-        links: [{ label: 'Full report (PDF)', url: '/projects/software-ml/ml-thermal-engineering/thermal-systems-ml.pdf', type: 'pdf' }],
+        links: [{ label: 'Full report (PDF)', url: 'Portfolio_MD/projects/software-ml/ml-thermal-engineering/thermal-systems-ml.pdf', type: 'pdf' }],
         status: 'completed',
       },
       {
