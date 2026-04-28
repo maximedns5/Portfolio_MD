@@ -1,10 +1,11 @@
 export type ProjectDomain =
-  | 'mécanique'
-  | 'électronique'
+  | 'mechanical'
+  | 'electronic'
   | 'software'
+  | 'machine-learning'
   | 'design'
-  | 'recherche'
-  | 'autre';
+  | 'research'
+  | 'other';
 
 export type ProjectLink = {
   label: string;

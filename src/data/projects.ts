@@ -9,7 +9,7 @@ export const projectGroups: ProjectGroup[] = [
     shortDesc:
       'Advanced mechanical design: cam mechanisms, biomedical implants, and aeronautical braking modeled in CATIA V5 and validated analytically or with FEA/CFD.',
     coverImage: '/projects/design-cad/cover.png',
-    domains: ['mécanique'],
+    domains: ['mechanical'],
     tags: ['CATIA V5', 'STARCCM+', 'ABAQUS', 'CFD', 'CAE', 'Biomechanics'],
     featured: true,
     projects: [
@@ -20,7 +20,7 @@ export const projectGroups: ProjectGroup[] = [
         year: 2025,
         duration: 'Sept. 2024 – Feb. 2025',
         context: 'Course project — Arts et Métiers, Paris',
-        domains: ['mécanique'],
+        domains: ['mechanical'],
         tags: ['CATIA V5', 'STARCCM+', 'CFD', 'Biomechanics', 'GSD'],
         shortDesc:
           'Centrifugal cardiac pump design and CFD simulation. Efficiency improved from 49% to 59% through iterative design cycles combining prototypes and STARCCM+ simulations.',
@@ -74,7 +74,7 @@ excessive velocity or turbulence can trigger thrombosis.
         year: 2025,
         duration: 'Sept. 2024 – Feb. 2025',
         context: 'Course project — Arts et Métiers, Paris',
-        domains: ['mécanique'],
+        domains: ['mechanical'],
         tags: ['CATIA V5', 'ABAQUS', 'FEA', 'Structural Sizing', 'Aeronautics'],
         shortDesc:
           'Full sizing and CAD of an aircraft disc brake with FEA validation against aerospace safety factors: 800 kg aircraft, −4 m/s² and 204 Nm braking torque.',
@@ -125,7 +125,7 @@ and a bill of materials covering 11 referenced components.
         year: 2025,
         duration: 'Jan. 2025 – Jun. 2025',
         context: 'Team project (5 members, team lead) — Arts et Métiers, Paris',
-        domains: ['mécanique'],
+        domains: ['mechanical'],
         tags: ['CATIA V5', 'ABAQUS', 'FEA', 'Fatigue Testing', 'Biomechanics', 'Team Lead'],
         shortDesc:
           'Led a five-member team through full prosthesis design: FEA, physical fatigue testing, and redesign with structural pegs to reduce implant loosening.',
@@ -184,7 +184,7 @@ area and redistributing stresses away from loosening initiation sites.
         year: 2025,
         duration: 'Jan. 2025 – Jun. 2025',
         context: 'Course project — Arts et Métiers, Paris',
-        domains: ['mécanique'],
+        domains: ['mechanical'],
         tags: ['CATIA V5', 'Mechanism Design', 'Cam-Follower', 'Industrial Automation'],
         shortDesc:
           'Cam-follower mechanism for 1,800 bottles per hour with full analytical validation, CATIA V5 modeling, and a three-sheet drawing set.',
@@ -231,7 +231,7 @@ Full mechanism modeled in CATIA V5 (GSD). A three-sheet manufacturing drawing se
     shortDesc:
       'End-to-end manufacturing work: sand casting, conventional machining, 5-axis drilling, and dimensional validation against ISO 2768 tolerances.',
     coverImage: '/projects/manufacturing/cover.png',
-    domains: ['mécanique'],
+    domains: ['mechanical'],
     tags: ['Sand Casting', 'Machining', 'Turning', 'Milling', '5-Axis', 'GD&T'],
     featured: true,
     projects: [
@@ -242,7 +242,7 @@ Full mechanism modeled in CATIA V5 (GSD). A three-sheet manufacturing drawing se
         year: 2024,
         duration: 'Sept. 2023 – Feb. 2024',
         context: 'Course project — Arts et Métiers, Paris',
-        domains: ['mécanique'],
+        domains: ['mechanical'],
         tags: ['Sand Casting', 'Aluminum', 'Turning', 'Milling', '5-Axis Drilling', 'GD&T'],
         shortDesc:
           'Complete manufacturing cycle of an aluminum mixer bearing: sand casting, turning and milling, 5-axis drilling, and dimensional validation against ISO 2768.',
@@ -286,7 +286,7 @@ The final part was validated as conformant after the full production chain.
     shortDesc:
       'R&D engineering across academic and industrial settings: plasma hydrogen reactor, offshore liquid hydrogen transport, and multi-scale data center thermal analysis.',
     coverImage: '/projects/research/cover.png',
-    domains: ['recherche'],
+    domains: ['research'],
     tags: ['COMSOL', 'Python', 'CFD', 'Hydrogen', 'R&D', 'Thermal Systems'],
     featured: true,
     projects: [
@@ -297,7 +297,7 @@ The final part was validated as conformant after the full production chain.
         year: 2025,
         duration: 'Sept. 2025 – Present',
         context: 'R&D Engineer — UC Berkeley',
-        domains: ['recherche'],
+        domains: ['research'],
         tags: ['COMSOL Multiphysics', 'CFD', 'Electromagnetics', 'Heat Transfer', 'Experimental Validation'],
         shortDesc:
           'Design and multiphysics modeling of a microwave plasma reactor for CO₂-free hydrogen production, coupling EM, thermal, and flow simulation in COMSOL.',
@@ -344,7 +344,7 @@ Measurements were correlated with COMSOL outputs to improve thermal efficiency a
         year: 2025,
         duration: 'Jan. 2025 – Jun. 2025',
         context: 'R&D Engineer Intern — Hynamics, Paris',
-        domains: ['recherche'],
+        domains: ['research'],
         tags: ['Hydrogen', 'Thermodynamics', 'System Architecture', 'Techno-Economic Modeling'],
         shortDesc:
           'Sizing and multi-criteria evaluation of liquid hydrogen offshore-to-onshore transport architectures, with thermodynamic modeling of cryogenic storage and piping.',
@@ -387,7 +387,7 @@ Output: ranked architecture concepts and client-ready recommendations.
         year: 2026,
         duration: 'Spring 2026',
         context: 'Course project — ME 193E/292E, UC Berkeley',
-        domains: ['recherche'],
+        domains: ['research'],
         tags: ['Python', 'COMSOL', 'CFD', 'Reality DC', 'Thermal Systems', 'Data Centers'],
         shortDesc:
           'Five interconnected projects analyzing data center cooling across six orders of magnitude, from chip-scale conduction to room-scale CFD and PUE optimization.',
@@ -442,12 +442,12 @@ temperature, and achieves **100% ASHRAE 2021 compliance** with **PUE 1.186**.
   },
   {
     id: 'software-ml',
-    title: 'Software, ML & Web Projects',
+    title: 'Software & Web Projects',
     shortDesc:
-      'Web applications, machine learning pipelines, and physics-informed models, from building energy simulators to neural networks trained on NASA microgravity data.',
+      'Web applications and product engineering: building energy simulators and an AI-powered caregiver support platform.',
     coverImage: '/projects/software-ml/cover.png',
     domains: ['software'],
-    tags: ['Python', 'Keras', 'TensorFlow', 'React', 'TypeScript', 'Random Forest', 'PINN'],
+    tags: ['React', 'TypeScript', 'Python', 'LLM', 'AI', 'Web App'],
     featured: true,
     projects: [
       {
@@ -549,6 +549,18 @@ of AI-generated recommendations.
         links: [],
         status: 'in-progress',
       },
+    ],
+  },
+  {
+    id: 'machine-learning',
+    title: 'Machine Learning Projects',
+    shortDesc:
+      'Physics-informed neural networks, genetic algorithms, and end-to-end forecasting pipelines applied to thermal engineering and energy systems.',
+    coverImage: '/projects/machine-learning/cover.png',
+    domains: ['machine-learning'],
+    tags: ['Python', 'Keras', 'TensorFlow', 'Random Forest', 'PINN', 'Neural Networks', 'scikit-learn'],
+    featured: true,
+    projects: [
       {
         id: 'ml-thermal-engineering',
         title: 'Machine Learning for Thermal Engineering',
@@ -556,7 +568,7 @@ of AI-generated recommendations.
         year: 2025,
         duration: 'Fall 2025',
         context: 'Course project — ME249, UC Berkeley',
-        domains: ['software'],
+        domains: ['machine-learning'],
         tags: ['Python', 'Keras', 'TensorFlow', 'Genetic Algorithm', 'PINN', 'Neural Networks'],
         shortDesc:
           'Four ML projects applied to thermal systems: genetic algorithms on NASA data, neural networks for gas turbines, a PINN for 2D heat conduction, and PV control classification.',
@@ -603,7 +615,7 @@ Three wiring modes classified via a softmax output with dropout added to mitigat
         year: 2026,
         duration: '2026',
         context: 'Personal project',
-        domains: ['software'],
+        domains: ['machine-learning'],
         tags: ['Python', 'Random Forest', 'scikit-learn', 'Time Series', 'Feature Engineering'],
         shortDesc:
           'End-to-end forecasting pipeline for three electricity distribution zones using the Tetouan SCADA dataset, reaching average R² around 0.9975 with extended features.',
