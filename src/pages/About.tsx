@@ -114,7 +114,7 @@ export default function About() {
               <span className={styles.waLabel}>WhatsApp</span>
             </div>
           </div>
-          <Button href="/public/about/resume.pdf" target="_blank" rel="noreferrer" accent>
+          <Button href="/Portfolio_MD/public/about/resume.pdf" target="_blank" rel="noreferrer" accent>
             Resume
           </Button>
         </aside>
