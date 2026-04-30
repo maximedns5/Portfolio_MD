@@ -114,7 +114,7 @@ export default function About() {
               <span className={styles.waLabel}>WhatsApp</span>
             </div>
           </div>
-          <Button href="/resume.pdf" target="_blank" rel="noreferrer" accent>
+          <Button href={`${import.meta.env.BASE_URL}resume.pdf`} target="_blank" rel="noreferrer" accent>
             Resume
           </Button>
         </aside>
