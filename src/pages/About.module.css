@@ -23,12 +23,13 @@
 }
 
 .contactCard {
+  align-self: start;
   border: var(--border-thin);
   display: grid;
   gap: var(--space-5);
+  min-width: 260px;
   padding: var(--space-5);
-  width: 240px;
-  align-self: start;
+  width: max-content;
 }
 
 .contactCardLabel {
