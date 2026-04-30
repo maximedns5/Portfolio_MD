@@ -1,3 +1,4 @@
+import Button from '../components/ui/Button';
 import SectionLabel from '../components/BlueprintElements/SectionLabel';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import styles from './About.module.css';
@@ -96,6 +97,27 @@ export default function About() {
             </p>
           </div>
         </div>
+
+        <aside className={styles.contactCard}>
+          <p className={styles.contactCardLabel}>Contact</p>
+          <div className={styles.contactList}>
+            <a href="mailto:maxime.denis@berkeley.edu" className={styles.contactLink}>
+              maxime.denis@berkeley.edu
+            </a>
+            <a href="tel:+13417668027" className={styles.contactLink}>
+              +1 (341) 766-8027
+            </a>
+            <div className={styles.contactItemRow}>
+              <a href="tel:+33783751179" className={styles.contactLink}>
+                +33 7 83 75 11 79
+              </a>
+              <span className={styles.waLabel}>WhatsApp</span>
+            </div>
+          </div>
+          <Button href="/resume.pdf" target="_blank" rel="noreferrer" accent>
+            Resume
+          </Button>
+        </aside>
       </div>
 
       <section className={styles.section}>

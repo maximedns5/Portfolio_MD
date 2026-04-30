@@ -1,17 +1,78 @@
 .page {
   display: grid;
   gap: var(--space-8);
-  max-width: var(--max-width-text);
+  max-width: 880px;
 }
 
 .hero {
+  align-items: start;
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr auto;
+    gap: var(--space-8);
+  }
 }
 
 .heroCopy {
   display: grid;
   gap: var(--space-4);
+}
+
+.contactCard {
+  border: var(--border-thin);
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  width: 240px;
+  align-self: start;
+}
+
+.contactCardLabel {
+  color: var(--color-ink-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.contactList {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.contactItemRow {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.contactLink {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-decoration: none;
+}
+
+.contactLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.waLabel {
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  padding: 2px 6px;
+  text-transform: uppercase;
 }
 
 .statusLabel {
