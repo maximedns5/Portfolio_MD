@@ -1,0 +1,918 @@
+================================================================================
+AUDIT COMPLET — PORTFOLIO_MD
+Généré le : 3 mai 2026
+Auteur du site : Maxime Denis
+Repo GitHub : github/maximedns5/Portfolio_MD
+URL de production : https://maximedns5.github.io/Portfolio_MD/
+================================================================================
+
+Ce document décrit exhaustivement la structure, le code, la logique de données
+et le style du portfolio afin qu'une IA puisse intervenir en sachant précisément
+où chaque information se trouve.
+
+================================================================================
+1. STACK TECHNIQUE
+================================================================================
+
+  Framework        : React 18.3.1 avec TypeScript 5.8
+  Bundler          : Vite 5.4  (config : vite.config.ts)
+  Routing          : react-router-dom v6 (BrowserRouter, Routes, lazy)
+  Styles           : CSS Modules (*.module.css par composant) + global CSS
+  Animations       : framer-motion 12 (transition de pages) + keyframes CSS
+  Icônes           : lucide-react 0.511
+  Markdown         : react-markdown 10 + remark-gfm 4
+                     (rendu du fullDesc de chaque projet)
+  Fonts (Google)   : Cormorant Garamond (titres), IBM Plex Sans (corps),
+                     IBM Plex Mono (labels/annotations)
+  Déploiement      : GitHub Pages via base: '/Portfolio_MD/' dans vite.config.ts
+  TypeScript strict : activé (tsconfig.app.json)
+  Tests            : aucun pour l'instant
+
+  Dépendances clés dans package.json :
+    "framer-motion": "^12.9.2"
+    "lucide-react": "^0.511.0"
+    "react": "^18.3.1"
+    "react-dom": "^18.3.1"
+    "react-markdown": "^10.1.0"
+    "remark-gfm": "^4.0.0"
+    "react-router-dom": "^6.30.1"
+
+  Scripts npm :
+    dev     → vite
+    build   → tsc -b && vite build
+    preview → vite preview
+
+================================================================================
+2. STRUCTURE DES FICHIERS
+================================================================================
+
+Portfolio_MD/
+├── index.html                   Point d'entrée HTML (lang="fr")
+├── vite.config.ts               base: '/Portfolio_MD/'
+├── package.json
+├── tsconfig.json / tsconfig.app.json / tsconfig.node.json
+│
+├── public/                      Assets statiques servis tels quels
+│   ├── 404.html                 Redirect SPA pour GitHub Pages
+│   │                            (sessionStorage.redirect trick)
+│   ├── favicon.svg
+│   ├── resume.pdf               CV (référencé dans About.tsx)
+│   └── projects/                Images des projets, organisées par groupe
+│       ├── design-cad/
+│       │   ├── cover-cad.png    (cover du groupe design-cad)
+│       │   ├── aircraft-brake/  img-01.png, img-02.png, img-03.png, cover.png
+│       │   ├── capping-machine/ img-01.png, img-02.png, img-03.png, cover.png
+│       │   ├── heart-pump/      img-01.png, img-02.png, img-03.png, cover.png
+│       │   ├── shoulder-prosthesis/
+│       │   │   cover-implant.png, img-01..05-implant.png
+│       │   └── water-filled-glazing/ cover.png (pas d'images de détail)
+│       ├── software-ml/
+│       │   ├── cover-soft.png   (cover du groupe software-ml)
+│       │   ├── thermosim/       img-01.png, img-02.png, cover.png
+│       │   ├── wellbe/          img-01..03-well.be.png, cover-well.be.png
+│       │   ├── ml-thermal-engineering/
+│       │   │   img-01-ml.png, img-02-ml.png, cover.png
+│       │   │   + thermal-systems-ml.pdf (rapport PDF)
+│       │   └── electricity-forecasting/
+│       │       img-01-tetouan.png, img-02-tetouan.png, cover-tetouan.png
+│       └── research/
+│           ├── cover-res.png    (cover du groupe research)
+│           ├── hydrogen-reactor/
+│           │   img-01-capstone.png, img-02-capstone.png, cover-capstone.png
+│           ├── hydrogen-transport/ cover-hydrogen.png (pas d'images de détail)
+│           └── datacenter-thermal/
+│               img-01..03-datacenter.png, cover-datacenter.png
+│               + report-datacenter.pdf
+│
+└── src/
+    ├── main.tsx                 Montage React dans #root + import des CSS globaux
+    ├── App.tsx                  Routeur principal (voir section 4)
+    ├── vite-env.d.ts
+    │
+    ├── types/
+    │   └── project.ts           Types TypeScript centraux (voir section 5)
+    │
+    ├── data/
+    │   └── projects.ts          TOUTES les données du portfolio (voir section 6)
+    │
+    ├── hooks/
+    │   └── useDocumentTitle.ts  Hook : met à jour <title> et meta description
+    │
+    ├── styles/
+    │   ├── global.css           Variables CSS, reset, utilitaires globaux
+    │   └── typography.css       Règles h1–h4, .label, .annotation, p
+    │
+    ├── components/
+    │   ├── BlueprintElements/   Éléments décoratifs "blueprint"
+    │   │   ├── CrosshairMark.tsx/.module.css
+    │   │   ├── DimensionLine.tsx/.module.css
+    │   │   ├── GridBackground.tsx/.module.css
+    │   │   └── SectionLabel.tsx/.module.css
+    │   ├── Layout/
+    │   │   ├── Layout.tsx/.module.css   Shell : Nav + main + Footer
+    │   │   ├── Nav.tsx/.module.css      Barre de navigation
+    │   │   └── Footer.tsx/.module.css   Pied de page
+    │   ├── ProjectCard/
+    │   │   └── ProjectCard.tsx/.module.css
+    │   ├── ProjectGrid/
+    │   │   └── ProjectGrid.tsx/.module.css  (filtre par domaine intégré)
+    │   ├── ProjectGroupCard/
+    │   │   └── ProjectGroupCard.tsx/.module.css
+    │   └── ui/
+    │       ├── Button.tsx/.module.css
+    │       ├── ImageGallery.tsx/.module.css  (lightbox au clic)
+    │       ├── ProjectImage.tsx/.module.css  (fallback si image manquante)
+    │       └── Tag.tsx/.module.css
+    │
+    └── pages/
+        ├── Home.tsx/.module.css
+        ├── Projects.tsx/.module.css
+        ├── About.tsx/.module.css
+        ├── ProjectGroupPage.tsx/.module.css
+        ├── ProjectDetail.tsx/.module.css
+        └── ProjectNodePage.tsx           (dispatcher slug → groupe ou projet)
+
+================================================================================
+3. DESIGN SYSTEM & STYLES GLOBAUX
+================================================================================
+
+FICHIER : src/styles/global.css
+
+  Variables CSS (--color-*, --font-*, --text-*, --space-*, etc.) :
+
+  Couleurs :
+    --color-bg          : #f4f0e6   (fond principal beige chaud)
+    --color-bg-alt      : #ede9dc
+    --color-surface     : #fdfaf4   (surface de carte)
+    --color-ink         : #1c1c1a   (texte principal)
+    --color-ink-light   : #6b6860   (texte secondaire)
+    --color-ink-faint   : #b0aca2   (texte très atténué)
+    --color-accent      : #2952a3   (bleu blueprint)
+    --color-accent-soft : #d6e0f5   (bleu très clair, sélection)
+    --color-grid        : rgba(28, 28, 26, 0.045)
+    --color-border      : rgba(28, 28, 26, 0.18)
+    --color-border-strong: rgba(28, 28, 26, 0.45)
+
+  Fonts :
+    --font-title : 'Cormorant Garamond', Georgia, serif  → H1–H4
+    --font-body  : 'IBM Plex Sans', system-ui, sans-serif → corps de texte
+    --font-mono  : 'IBM Plex Mono', 'Courier New', monospace → labels, annotations
+
+  Tailles de texte :
+    --text-xs   : 0.64rem
+    --text-sm   : 0.80rem
+    --text-base : 1rem
+    --text-md   : 1.2rem
+    --text-lg   : 1.6rem
+    --text-xl   : 2.4rem
+    --text-2xl  : clamp(2rem, 8vw, 4rem)  → h1
+
+  Espacement (--space-1 à --space-10) : 4px → 128px
+  Layout :
+    --max-width      : 1100px
+    --max-width-text : 680px
+    --page-padding   : clamp(20px, 5vw, 60px)
+    --nav-height     : 56px
+    --radius         : 0px    (pas d'arrondi — esthétique blueprint)
+    --radius-sm      : 2px
+
+  Animations CSS globales :
+    .fadeInUp  → fadeInUp keyframe (opacity 0→1, translateY 12px→0, 0.35s)
+    .bounceCue → bounceCue keyframe (bounce infini sur la flèche scroll)
+
+  Classes utilitaires globales :
+    .appShell       → min-height: 100vh, position: relative
+    .pageShell      → conteneur de page centré (max 1100px, padding nav + space-7)
+    .pageIntro      → grille intro de page (gap space-4, mb space-8)
+    .metaRow        → ligne de métadonnées mono, couleur ink-light
+    .emptyState     → bloc vide avec border
+    .contentSurface → surface de carte (fond, border, shadow)
+    .twoColumn      → grille 2 colonnes responsive (>768px)
+
+FICHIER : src/styles/typography.css
+
+  h1 → font-title, text-2xl, weight 500, tracking -0.02em, line-height 1.1
+  h2 → text-xl
+  h3 → text-lg
+  h4 → text-md
+  .label      → mono, text-xs, tracking 0.16em, uppercase, color ink-light
+  .annotation → mono, text-sm, tracking 0.08em, color ink-light
+  p           → body, text-base, line-height 1.7, max-width 65ch
+
+================================================================================
+4. ROUTAGE (src/App.tsx)
+================================================================================
+
+  BrowserRouter avec basename = import.meta.env.BASE_URL (sans slash final)
+  → en production : basename = "/Portfolio_MD"
+
+  Routes définies :
+    /                              → <Home />           (eager)
+    /projects                      → <Projects />        (eager)
+    /projects/:slug                → <ProjectNodePage /> (lazy)
+    /projects/:groupId/:projectId  → <ProjectDetail />   (lazy)
+    /about                         → <About />           (eager)
+
+  Toutes les pages sont enveloppées dans <Layout> (Nav + Footer).
+
+  Lazy loading :
+    ProjectDetail et ProjectNodePage sont chargés en lazy() avec Suspense.
+    Fallback : <div className="pageShell">Loading...</div>
+
+  GitHub Pages SPA trick :
+    - public/404.html : écrit sessionStorage.redirect = location.href
+                        puis redirige vers /Portfolio_MD/
+    - index.html      : script inline qui relit sessionStorage.redirect
+                        et applique history.replaceState
+
+================================================================================
+5. TYPES TYPESCRIPT (src/types/project.ts)
+================================================================================
+
+  ProjectDomain (union string) :
+    'mechanical' | 'electronic' | 'software' | 'machine-learning'
+    | 'design' | 'research' | 'other'
+
+  ProjectLink :
+    { label: string; url: string; type: 'github'|'pdf'|'demo'|'external';
+      disabled?: boolean }
+
+  ProjectImage :
+    { src: string; alt: string; caption?: string }
+
+  Project :
+    id: string           — identifiant unique (slug URL)
+    title: string
+    subtitle?: string
+    year: number
+    duration?: string    — ex: "Sept. 2024 – Feb. 2025"
+    context?: string     — ex: "Course project — Arts et Métiers, Paris"
+    domains: ProjectDomain[]
+    tags: string[]       — liste libre de mots-clés
+    shortDesc: string    — description courte (utilisée dans les cards)
+    fullDesc: string     — Markdown complet (rendu sur la page de détail)
+    coverImage: string   — chemin /projects/groupe/projet/cover.png
+    images?: ProjectImage[]
+    links?: ProjectLink[]
+    featured?: boolean
+    status?: 'completed' | 'in-progress' | 'archived'
+
+  ProjectGroup :
+    id: string           — slug URL du groupe
+    title: string
+    shortDesc: string
+    coverImage: string   — chemin /projects/groupe/cover-xxx.png
+    domains: ProjectDomain[]
+    tags: string[]
+    projects: Project[]
+    featured?: boolean
+
+================================================================================
+6. DONNÉES (src/data/projects.ts)
+================================================================================
+
+  Ce fichier est LA SOURCE DE VÉRITÉ de tout le contenu du portfolio.
+  Toute modification de contenu passe par ce fichier.
+
+  Exports de données :
+    standaloneProjects : Project[]  → tableau vide actuellement (aucun projet solo)
+    projectGroups      : ProjectGroup[]  → 3 groupes actifs
+
+  ── GROUPE 1 : "design-cad" ────────────────────────────────────────────────
+  id: 'design-cad'
+  title: 'Design & CAD Projects'
+  coverImage: '/projects/design-cad/cover-cad.png'
+  domains: ['mechanical']
+  featured: true
+  tags: ['CATIA V5', 'STARCCM+', 'ABAQUS', 'CFD', 'CAE', 'Biomechanics']
+
+  Projets (5) :
+
+    1. id: 'heart-pump'
+       title: 'Design of a Heart Pump'
+       year: 2025
+       duration: 'Sept. 2024 – Feb. 2025'
+       context: 'Course project — Arts et Métiers, Paris'
+       tags: ['CATIA V5', 'STARCCM+', 'CFD', 'Biomechanics', 'GSD']
+       status: 'completed'
+       coverImage: '/projects/design-cad/heart-pump/cover.png'
+       images: img-01.png, img-02.png, img-03.png  (3 images)
+       links: [] (aucun lien)
+       fullDesc: 3 sections Markdown :
+         ## Pump Geometry & Assemblies
+         ## CFD Simulation — STARCCM+  (table: Mesh size, Inlet flow, Fluid)
+         ## Iterative Improvement & Results
+       Résultat clé : efficacité 49% → 59%, pic à 58.5% à 8 L/min
+
+    2. id: 'aircraft-brake'
+       title: 'Aircraft Brake Design'
+       year: 2025
+       duration: 'Sept. 2024 – Feb. 2025'
+       context: 'Course project — Arts et Métiers, Paris'
+       tags: ['CATIA V5', 'ABAQUS', 'FEA', 'Structural Sizing', 'Aeronautics']
+       status: 'completed'
+       coverImage: '/projects/design-cad/aircraft-brake/cover.png'
+       images: img-01.png, img-02.png, img-03.png  (3 images)
+       links: []
+       fullDesc: 3 sections Markdown :
+         ## Brake Architecture & CAD
+         ## Material Selection & Reliability
+         ## FEA Performance Verification — ABAQUS
+       Spécifications clés : 800 kg, −4 m/s², 204 Nm, 14 s
+
+    3. id: 'shoulder-prosthesis'
+       title: 'Design & Optimization of a Shoulder Prosthesis'
+       year: 2025
+       duration: 'Jan. 2025 – Jun. 2025'
+       context: 'Team project (5 members, team lead) — Arts et Métiers, Paris'
+       tags: ['CATIA V5', 'ABAQUS', 'FEA', 'Fatigue Testing', 'Biomechanics', 'Team Lead']
+       status: 'completed'
+       coverImage: '/projects/design-cad/shoulder-prosthesis/cover-implant.png'
+       images: img-01..05-implant.png  (5 images)
+       links: []
+       fullDesc: 4 sections Markdown :
+         ## Team Lead
+         ## Phase 1 — FEA Characterization (ABAQUS)
+         ## Phase 2 — Physical Fatigue Testing
+         ## Phase 3 — Redesign & Validation
+
+    4. id: 'capping-machine'
+       title: 'Automatic Bottle Capping Machine'
+       year: 2025
+       duration: 'Jan. 2025 – Jun. 2025'
+       context: 'Course project — Arts et Métiers, Paris'
+       tags: ['CATIA V5', 'Mechanism Design', 'Cam-Follower', 'Industrial Automation']
+       status: 'completed'
+       coverImage: '/projects/design-cad/capping-machine/cover.png'
+       images: img-01.png, img-02.png, img-03.png  (3 images)
+       links: []
+       fullDesc: 3 sections Markdown :
+         ## Motion Law — 3-4-5 Polynomial
+         ## Mechanical Validation  (table 3 critères)
+         ## CAD & Deliverables
+
+    5. id: 'water-filled-glazing'
+       title: 'Water-Filled Double-Glazing System'
+       year: 2023
+       duration: 'Jan. 2022 – Jun. 2023'
+       context: 'Course project — Arts et Métiers, Paris'
+       tags: ['Python', 'SolidWorks', 'CFD', 'Thermal Modeling', 'Experimentation']
+       status: 'completed'
+       coverImage: '/projects/design-cad/water-filled-glazing/cover.png'
+       images: []  (aucune image de détail)
+       links: []
+       fullDesc: 3 sections Markdown :
+         ## Concept & Mechanical Layout
+         ## Modeling & Experimentation
+         ## Model Accuracy & Results  (< 5% variance)
+
+  ── GROUPE 2 : "software-ml" ───────────────────────────────────────────────
+  id: 'software-ml'
+  title: 'Software, ML & Web Projects'
+  coverImage: '/projects/software-ml/cover-soft.png'
+  domains: ['software', 'machine-learning']
+  featured: true
+  tags: ['React', 'TypeScript', 'Python', 'Keras', 'TensorFlow',
+         'Random Forest', 'PINN', 'LLM', 'AI']
+
+  Projets (4) :
+
+    1. id: 'building-thermal'   ← ATTENTION : coverImage pointe vers /thermosim/
+       title: 'Building Thermal Efficiency Simulator'
+       year: 2026
+       context: 'Personal project'
+       tags: ['React', 'TypeScript', 'Thermal Modeling', 'Energy', 'Web App']
+       status: 'in-progress'
+       coverImage: '/projects/software-ml/thermosim/cover.png'
+       images: thermosim/img-01.png, thermosim/img-02.png  (2 images)
+       links: [{ label: 'Live demo', url: 'https://maximedns5.github.io/ThermoSim/', type: 'demo' }]
+       fullDesc: 3 sections Markdown :
+         ## Building Customization  (table 7 paramètres)
+         ## Thermal Engine
+         ## Output
+
+    2. id: 'wellbe'
+       title: 'Well.Be'
+       year: 2026
+       context: 'Co-founder & Product/Backend — Well.Be startup'
+       tags: ['LLM', 'AI', 'Product', 'Backend', 'Startup', 'MVP', 'TypeScript', 'Python']
+       status: 'in-progress'
+       coverImage: '/projects/software-ml/wellbe/cover-well.be.png'
+       images: img-01..03-well.be.png  (3 images)
+       links: []
+       Notice propriétaire : affichée dans ProjectDetail (id === 'wellbe')
+       fullDesc: 4 sections Markdown :
+         ## Context
+         ## Product Architecture
+         ## AI-Driven Support
+         ## MVP
+
+    3. id: 'ml-thermal-engineering'
+       title: 'Machine Learning for Thermal Engineering'
+       year: 2025
+       duration: 'Fall 2025'
+       context: 'Course project — ME249, UC Berkeley'
+       tags: ['Python', 'Keras', 'TensorFlow', 'Genetic Algorithm', 'PINN', 'Neural Networks']
+       status: 'completed'
+       coverImage: '/projects/software-ml/ml-thermal-engineering/cover.png'
+       images: img-01-ml.png, img-02-ml.png  (2 images)
+       links: [{ label: 'Full report (PDF)',
+                 url: 'Portfolio_MD/projects/software-ml/ml-thermal-engineering/thermal-systems-ml.pdf',
+                 type: 'pdf' }]
+       fullDesc: 6 sections Markdown :
+         ## Overview — Methodological Progression
+         ## Project 1 — Nucleate Boiling in Microgravity
+         ## Project 2 — Hybrid Solar/Fossil Gas Turbine
+         ## Project 3 — PV Panel: Deep Learning and PINN
+         ## Project 4 — Multi-Panel PV System
+
+    4. id: 'electricity-forecasting'
+       title: 'Electricity Consumption Forecasting'
+       year: 2026
+       context: 'Personal project'
+       tags: ['Python', 'Random Forest', 'scikit-learn', 'Time Series', 'Feature Engineering']
+       status: 'completed'
+       coverImage: '/projects/software-ml/electricity-forecasting/cover-tetouan.png'
+       images: img-01-tetouan.png, img-02-tetouan.png  (2 images)
+       links: [{ label: 'Full report — coming soon', url: '', type: 'pdf', disabled: true }]
+       fullDesc: 4 sections Markdown :
+         ## Dataset  (52,416 observations, 10 min, 3 zones)
+         ## Pipeline
+         ## Results
+         ## Key Takeaways
+
+  ── GROUPE 3 : "research" ──────────────────────────────────────────────────
+  id: 'research'
+  title: 'Research & Industry Projects'
+  coverImage: '/projects/research/cover-res.png'
+  domains: ['research']
+  featured: true
+  tags: ['COMSOL', 'Python', 'CFD', 'Hydrogen', 'R&D', 'Thermal Systems']
+
+  Projets (3) :
+
+    1. id: 'hydrogen-reactor'
+       title: 'CO₂-Free Hydrogen Reactor'
+       year: 2025
+       duration: 'Sept. 2025 – Present'
+       context: 'R&D Engineer — UC Berkeley'
+       tags: ['COMSOL Multiphysics', 'CFD', 'Electromagnetics', 'Heat Transfer', 'Experimental Validation']
+       status: 'in-progress'
+       coverImage: '/projects/research/hydrogen-reactor/cover-capstone.png'
+       images: img-01-capstone.png, img-02-capstone.png  (2 images)
+       links: [{ label: 'Full report — coming soon', url: '', type: 'pdf', disabled: true }]
+       fullDesc: 4 sections Markdown :
+         ## Context
+         ## Reactor Mechanical Design
+         ## COMSOL Multiphysics — 3D Coupled Model  (table 3 domaines physiques)
+         ## Experimental Validation
+
+    2. id: 'hydrogen-transport'
+       title: 'Offshore Liquid Hydrogen Transport'
+       year: 2025
+       duration: 'Jan. 2025 – Jun. 2025'
+       context: 'R&D Engineer Intern — Hynamics, Paris'
+       tags: ['Hydrogen', 'Thermodynamics', 'System Architecture', 'Techno-Economic Modeling']
+       status: 'completed'
+       coverImage: '/projects/research/hydrogen-transport/cover-hydrogen.png'
+       images: []  (aucune image de détail)
+       links: []
+       Notice propriétaire : affichée dans ProjectDetail (id === 'hydrogen-transport')
+       fullDesc: 4 sections Markdown :
+         ## Context  (mention propriété Hynamics)
+         ## System Architecture & Sizing
+         ## Techno-Economic Modeling  (table CAPEX/OPEX, boil-off, énergie)
+         ## Specifications & Documentation
+
+    3. id: 'datacenter-thermal'
+       title: 'Multi-Scale Thermal Analysis of Data Centers'
+       year: 2026
+       duration: 'Spring 2026'
+       context: 'Course project — ME 193E/292E, UC Berkeley'
+       tags: ['Python', 'COMSOL', 'CFD', 'Reality DC', 'Thermal Systems', 'Data Centers']
+       status: 'completed'
+       coverImage: '/projects/research/datacenter-thermal/cover-datacenter.png'
+       images: img-01..03-datacenter.png  (3 images)
+       links: [{ label: 'Full report (PDF)',
+                 url: 'Portfolio_MD/projects/research/datacenter-thermal/report-datacenter.pdf',
+                 type: 'pdf' }]
+       fullDesc: 7 sections Markdown :
+         ## Overview
+         ## Project 1 — System COP  (COP 3 à 30+)
+         ## Project 2 — Chip Conduction (Python)
+         ## Project 3 — Boundary Layer + Python CFD
+         ## Project 4 — COMSOL
+         ## Project 5 — Reality DC Room Simulation  (PUE 1.186, 100% ASHRAE 2021)
+
+  ── FONCTIONS UTILITAIRES EXPORTÉES ────────────────────────────────────────
+
+  getGroupById(groupId)            → ProjectGroup | undefined
+  getProjectInGroup(gId, pId)      → Project | undefined
+  getAllProjects()                  → [...standaloneProjects, ...tous les projets des groupes]
+  getProjectById(projectId)        → Project | undefined
+  getProjectLocation(projectId)    → { groupId?, project } | undefined
+  getProjectPath(projectId)        → '/projects/groupId/projectId' ou '/projects/projectId'
+  getProjectsByDomain(domain)      → Project[]
+  getFeaturedGroups()              → ProjectGroup[] où featured === true
+  getActiveGroups()                → ProjectGroup[] où projects.length > 0
+  getAllDomains()                  → ['all', ...domaines uniques]
+
+================================================================================
+7. PAGES (src/pages/)
+================================================================================
+
+── Home.tsx ─────────────────────────────────────────────────────────────────
+
+  Route : /
+  Title : 'Portfolio | Home'
+  Description meta : 'Blueprint-style engineering portfolio...'
+
+  Structure :
+    1. Section hero
+       - <GridBackground /> (SVG grille en fond)
+       - 4x <CrosshairMark /> aux coins (cornerTopLeft/Right, cornerBottomLeft/Right)
+       - <DimensionLine /> horizontal (label "Portfolio 2026")
+       - <DimensionLine /> vertical (label "Blueprint")
+       - heroContent : label, h1 "Maxime Denis", texte lead
+       - scrollCue : flèche ArrowDown avec animation bounceCue
+    2. Section "Selected groups"
+       - <SectionLabel label="Selected groups" count={N} />
+       - featuredGroups = getFeaturedGroups().slice(0, 4)  → max 4 groupes featured
+       - <ProjectGroupCard> pour chaque groupe
+       - Lien "View all project groups" → /projects
+    3. Section "About"
+       - <SectionLabel label="About" />
+       - Bloc texte teaser dans .contentSurface
+       - Lien "Learn more" → /about
+
+── Projects.tsx ──────────────────────────────────────────────────────────────
+
+  Route : /projects
+  Title : 'Portfolio | Projects'
+  Animation : framer-motion (opacity 0→1, y 12→0, 0.35s easeOut)
+
+  Structure :
+    1. pageIntro : label "Technical archive", h1 "Projects", paragraphe
+    2. <SectionLabel label="Project groups" count={groups.length} />
+    3. Grille de <ProjectGroupCard> pour chaque groupe actif
+    4. Si standaloneProjects.length > 0 :
+       - <SectionLabel label="Standalone projects" />
+       - <ProjectGrid projects={standaloneProjects} />
+       (actuellement vide, section masquée)
+
+── About.tsx ─────────────────────────────────────────────────────────────────
+
+  Route : /about
+  Title : 'Portfolio | About'
+
+  Données en dur dans le fichier (PAS dans projects.ts) :
+
+  education[] (3 entrées) :
+    - MEng Mechanical Engineering, UC Berkeley (Aug. 2025 – Present) — "In progress"
+    - B.Sc. Mechanical & Industrial Engineering, Arts et Métiers ParisTech (2023–2025)
+    - Classes Préparatoires PTSI/PT*, Lycée Raspail, Paris 14ème (2021–2023)
+
+  skillGroups[] (7 catégories) :
+    - Design & CAD : CATIA V5 (400h+), SolidWorks, GD&T, ...
+    - Simulation   : STARCCM+, ABAQUS, COMSOL, Reality DC
+    - Manufacturing: Sand casting, turning, milling, 5-axis, 3D printing
+    - Programming  : Python, MATLAB, TypeScript, MySQL, SQLite
+    - ML & Data    : Keras/TensorFlow, scikit-learn, Random Forest, PINNs
+    - Energy & Thermal : Thermodynamics, heat transfer, hydrogen, psychrometrics
+    - Languages    : French (native), English (fluent)
+
+  Contact :
+    - Email   : maxime.denis@berkeley.edu
+    - Tél US  : +1 (341) 766-8027
+    - Tél FR  : +33 7 83 75 11 79 (WhatsApp)
+    - CV (PDF): lien vers BASE_URL + 'resume.pdf'
+
+  Texte bio (3 paragraphes inline dans le fichier) :
+    - Étudiant MEng UC Berkeley, cherche poste full-time mécanique/simulation/énergie
+    - Passion pour l'ingénierie multi-échelle
+    - Co-fondateur de Well.Be
+
+  IMPORTANT : photo commentée → <!-- <img src="/about/photo.jpg" ... /> -->
+              Pour ajouter la photo, décommenter cette ligne.
+
+  Structure rendue :
+    1. Hero deux colonnes (texte bio + aside contactCard)
+    2. Section EDUCATION (timeline avec marker)
+    3. Section SKILLS (skillsGrid)
+    4. Section pour expériences pro (à compléter si besoin — non implémentée)
+
+── ProjectGroupPage.tsx ──────────────────────────────────────────────────────
+
+  Route : /projects/:slug (si le slug correspond à un groupId)
+         ou /projects/:groupId (fallback)
+  Résolution : useParams() → groupId ?? slug → getGroupById()
+  Title : 'Portfolio | {group.title}'
+  Animation : framer-motion identique à Projects.tsx
+
+  Structure :
+    1. pageIntro : label "Project group", h1 group.title, description, metaRow
+    2. Lien "Back to all groups" → /projects
+    3. <SectionLabel label="Projects in group" count={N} />
+    4. <ProjectGrid projects={group.projects} />  (avec filtre par domaine)
+
+── ProjectNodePage.tsx ───────────────────────────────────────────────────────
+
+  Route : /projects/:slug
+  Rôle  : dispatcher — décide si le slug est un groupe ou un projet solo
+  Logique :
+    - getGroupById(slug) trouvé → affiche <ProjectGroupPage />
+    - standaloneProjects.find(slug) trouvé → affiche <ProjectDetail />
+    - sinon → <Navigate to="/projects" />
+
+── ProjectDetail.tsx ─────────────────────────────────────────────────────────
+
+  Route : /projects/:groupId/:projectId
+  Résolution :
+    - groupId + projectId → getProjectInGroup(groupId, projectId)
+    - slug seul → getProjectLocation(slug)
+  Title : 'Portfolio | {project.title}'
+  Description meta : project.shortDesc
+
+  Comportement spécial :
+    - showProprietaryNotice : true si id === 'hydrogen-transport' || 'wellbe'
+      → affiche un bandeau "Proprietary scope notice..."
+    - showLiveDemoSoon : true si id === 'building-thermal' et liens vides
+      → affiche "Live demo coming soon" à la place des boutons
+    - Navigation précédent/suivant entre projets (ordre getAllProjects())
+
+  Structure rendue :
+    1. header
+       - Ref. NNN (index paddé 001, 002, etc.)
+       - Titre + badge "In progress" si status === 'in-progress'
+       - Subtitle
+       - metaRow : domains, year, duration, context
+       - Tags (<Tag> pour chaque tag)
+       - Boutons liens (Button avec icône Github/FileText/ExternalLink)
+    2. Figure cover image (<ProjectImage> avec fallback)
+    3. Corps Markdown (react-markdown + remark-gfm)
+       - h2 → div avec divider + heading stylisé
+       - li → style listItem
+       - code → inlineCode
+       - table → tableWrapper + table
+    4. Section galerie images (<ImageGallery>) si images présentes
+    5. Nav précédent/suivant
+
+================================================================================
+8. COMPOSANTS (src/components/)
+================================================================================
+
+── Layout/ ──────────────────────────────────────────────────────────────────
+
+  Layout.tsx
+    Props: PropsWithChildren
+    Structure: <div appShell> → <Nav /> → <main>{children}</main> → <Footer />
+
+  Nav.tsx
+    - État isScrolled (scrollY > 20) → classe styles.scrolled
+    - NavLink "/" (brand "Maxime Denis") + CrosshairMark décoratif
+    - NavLinks : "Projects" → /projects, "About" → /about
+    - Classe active gérée par NavLink isActive
+
+  Footer.tsx
+    - Texte fixe : "Portfolio technique" / "Blueprint portfolio built with
+      React, TypeScript and CSS Modules."
+
+── BlueprintElements/ ────────────────────────────────────────────────────────
+
+  CrosshairMark.tsx
+    - SVG 24×24, viewBox "0 0 24 24"
+    - Path : croix (12 1 V7 M12 17 V23 M1 12 H7 M17 12 H23)
+    - Circle : cx=12 cy=12 r=3.25
+    - Props: className optional
+
+  DimensionLine.tsx
+    - Props: direction ('horizontal'|'vertical'), label, className
+    - Rendu: div avec .wrapper + .arrow + .label + .arrow
+    - Les CSS modules gèrent la direction
+
+  GridBackground.tsx
+    - SVG avec pattern SVG "blueprint-grid" (grille 4×4, stroke 0.25)
+    - preserveAspectRatio: none
+    - Utilisé en fond du hero de Home
+
+  SectionLabel.tsx
+    - Props: label, count?
+    - Rendu: ligne (--) + texte label [ / count] + ligne (--)
+    - Utilisé pour séparer les sections
+
+── ProjectGroupCard/ ─────────────────────────────────────────────────────────
+
+  Props: group (ProjectGroup), index (number)
+  Lien : /projects/{group.id}
+  Animation delay : index * 0.06s (stagger)
+  Contenu :
+    - <ProjectImage> cover du groupe
+    - Tags domaines
+    - Titre + count "{N} projects"
+    - Description courte
+    - Tags (4 premiers) + "Open group" avec ArrowRight
+
+── ProjectGrid/ ──────────────────────────────────────────────────────────────
+
+  Props: projects (Project[])
+  État local: activeDomain ('all' | ProjectDomain)
+  Filtres : boutons générés depuis les domaines uniques des projets
+  DOMAIN_LABELS : mapping domain → libellé lisible
+  Grille filtrée → <ProjectCard> pour chaque projet
+  EmptyState si filteredProjects.length === 0
+
+── ProjectCard/ ──────────────────────────────────────────────────────────────
+
+  Props: project (Project), index (number)
+  Lien : getProjectPath(project.id)
+  Animation delay : index * 0.06s
+  Contenu :
+    - <ProjectImage> cover du projet (loading="lazy")
+    - Tags domaines
+    - Titre + année
+    - Description courte
+    - "View project" avec ArrowRight
+
+── ui/ ───────────────────────────────────────────────────────────────────────
+
+  Button.tsx
+    - Polymorphe : si href fourni → <a>, sinon → <button>
+    - Props: children, accent? (booléen → style accent bleu), + attrs natifs
+    - Utilisé pour liens PDF/demo/github et le bouton Resume
+
+  Tag.tsx
+    - Props: children (string), accent? (booléen)
+    - Span simple avec styles.tag
+
+  ProjectImage.tsx
+    - Props: src, alt, className, fallbackClassName, loading ('eager'|'lazy')
+    - Résolution src : si commence par '/' → préfixe BASE_URL (GitHub Pages)
+    - Fallback si onError : div avec filename extrait du path
+    - Utilisé partout où une image projet est affichée
+
+  ImageGallery.tsx
+    - Props: images (ProjectImage[])
+    - État: activeIndex (null = fermé, number = lightbox ouverte)
+    - Grille de boutons avec ProjectImage + caption
+    - Overlay lightbox au clic (ferme sur Escape ou clic)
+
+================================================================================
+9. HOOK (src/hooks/useDocumentTitle.ts)
+================================================================================
+
+  useDocumentTitle(title: string, options?: { description?: string })
+  - Modifie document.title et meta[name="description"] au montage
+  - Restaure les valeurs précédentes au démontage (cleanup)
+  - Crée la balise meta description si elle n'existe pas
+  - Utilisé dans chaque page
+
+================================================================================
+10. CONFIGURATION DE BUILD (index.html + vite.config.ts)
+================================================================================
+
+  index.html :
+    - lang="fr"
+    - Fonts Google Fonts : Cormorant Garamond 400/500/600,
+                           IBM Plex Mono 400/500, IBM Plex Sans 400/500
+    - rel=preconnect vers fonts.googleapis.com et fonts.gstatic.com
+    - Script SPA redirect (sessionStorage trick)
+    - <div id="root"> + <script type="module" src="/src/main.tsx">
+
+  vite.config.ts :
+    - plugins: [react()]
+    - base: '/Portfolio_MD/'
+    → IMPORTANT : toutes les URLs d'assets doivent commencer par /Portfolio_MD/
+      en production. ProjectImage.tsx gère ça avec import.meta.env.BASE_URL.
+
+  tsconfig.app.json :
+    - target: ES2020
+    - strict: true
+    - jsx: react-jsx
+    - moduleResolution: Node
+
+================================================================================
+11. NAVIGATION & URLS (résumé)
+================================================================================
+
+  URL                                       Page affichée
+  ─────────────────────────────────────────────────────────────────────
+  /Portfolio_MD/                            Home
+  /Portfolio_MD/projects                    Projects (liste des groupes)
+  /Portfolio_MD/projects/design-cad         ProjectGroupPage (groupe CAD)
+  /Portfolio_MD/projects/software-ml        ProjectGroupPage (groupe Software)
+  /Portfolio_MD/projects/research           ProjectGroupPage (groupe Research)
+  /Portfolio_MD/projects/design-cad/heart-pump         ProjectDetail
+  /Portfolio_MD/projects/design-cad/aircraft-brake     ProjectDetail
+  /Portfolio_MD/projects/design-cad/shoulder-prosthesis ProjectDetail
+  /Portfolio_MD/projects/design-cad/capping-machine    ProjectDetail
+  /Portfolio_MD/projects/design-cad/water-filled-glazing ProjectDetail
+  /Portfolio_MD/projects/software-ml/building-thermal  ProjectDetail
+  /Portfolio_MD/projects/software-ml/wellbe            ProjectDetail
+  /Portfolio_MD/projects/software-ml/ml-thermal-engineering ProjectDetail
+  /Portfolio_MD/projects/software-ml/electricity-forecasting ProjectDetail
+  /Portfolio_MD/projects/research/hydrogen-reactor     ProjectDetail
+  /Portfolio_MD/projects/research/hydrogen-transport   ProjectDetail
+  /Portfolio_MD/projects/research/datacenter-thermal   ProjectDetail
+  /Portfolio_MD/about                       About
+
+  Toute route inconnue redirige vers /projects (via Navigate replace).
+
+================================================================================
+12. PARTICULARITÉS & POINTS D'ATTENTION
+================================================================================
+
+  1. IMAGES MANQUANTES
+     ProjectImage.tsx affiche un fallback (fond grisé + nom de fichier) si
+     l'image ne charge pas. Cela évite les erreurs visuelles mais les images
+     doivent être placées dans public/projects/ selon les chemins définis dans
+     projects.ts.
+
+  2. PDF ACCESSIBLES
+     Les PDF référencés ont des URLs relatives sans slash initial :
+     'Portfolio_MD/projects/.../.pdf'
+     Cela suppose qu'ils sont servis depuis la racine GitHub Pages.
+     À surveiller si le déploiement change.
+
+  3. NOTICE PROPRIÉTAIRE
+     Les projets 'hydrogen-transport' et 'wellbe' affichent automatiquement
+     un bandeau "Proprietary scope notice" dans ProjectDetail.tsx (ligne ~40).
+     Pour en ajouter un autre, modifier la condition showProprietaryNotice.
+
+  4. PHOTO DE PROFIL
+     Dans About.tsx, la balise image est commentée :
+     {/* <img src="/about/photo.jpg" alt="Maxime Denis" /> */}
+     Le fichier doit être placé dans public/about/photo.jpg.
+
+  5. RESUME PDF
+     Référencé dans About.tsx via :
+     href={`${import.meta.env.BASE_URL}resume.pdf`}
+     → Doit être dans public/resume.pdf
+
+  6. ORDRE DES PROJETS DANS getAllProjects()
+     L'ordre détermine la numérotation "Ref. NNN" et la navigation
+     précédent/suivant dans ProjectDetail. L'ordre actuel est :
+     design-cad (5 projets) → software-ml (4 projets) → research (3 projets)
+     soit 12 projets au total (Ref. 001 à 012).
+
+  7. FEATURED
+     Les 3 groupes ont featured: true → tous apparaissent sur Home.
+     getFeaturedGroups().slice(0, 4) limite à 4 sur Home (actuellement 3).
+
+  8. standaloneProjects
+     Tableau vide ([]). La section standalone dans Projects.tsx est
+     conditionnellement cachée. Pour ajouter des projets solo, pousser des
+     objets Project dans ce tableau.
+
+  9. DOMAINE 'manufacturing'
+     Le dossier public/projects/manufacturing/ existe (mixer-bearing/)
+     mais aucun groupe ou projet correspondant n'existe dans projects.ts.
+     C'est un dossier résiduel ou prévu pour une future extension.
+
+  10. ANIMATION STAGGER
+      ProjectCard et ProjectGroupCard utilisent style={{ animationDelay: `${index * 0.06}s` }}
+      pour décaler les apparitions. Cela repose sur la classe CSS .fadeInUp
+      définie dans global.css.
+
+  11. FRAMER-MOTION vs CSS animations
+      - Home.tsx : animation CSS (.fadeInUp)
+      - Projects.tsx, ProjectGroupPage.tsx : framer-motion motion.section
+      - ProjectDetail.tsx : CSS (.fadeInUp sur article)
+      Il n'y a pas d'incohérence fonctionnelle mais deux systèmes coexistent.
+
+================================================================================
+13. COMMENT AJOUTER UN PROJET
+================================================================================
+
+  1. Ouvrir src/data/projects.ts
+  2. Trouver le projectGroups[] du groupe cible
+  3. Ajouter un objet Project dans le tableau projects[] du groupe
+     en respectant le type Project (voir section 5)
+  4. Placer les images dans public/projects/{groupId}/{projectId}/
+     Nommage habituel : cover.png, img-01.png, img-02.png, ...
+  5. Rédiger fullDesc en Markdown (sections ## pour h2)
+
+================================================================================
+14. COMMENT AJOUTER UN GROUPE
+================================================================================
+
+  1. Ouvrir src/data/projects.ts
+  2. Ajouter un objet ProjectGroup dans projectGroups[]
+  3. Placer la cover dans public/projects/{groupId}/cover-xxx.png
+  4. Le groupe apparaîtra automatiquement dans Projects.tsx et (si featured)
+     dans Home.tsx
+
+================================================================================
+15. CONTENU ABOUT.TSX — DONNÉES EN DUR
+================================================================================
+
+  Les données de la page About ne sont PAS dans projects.ts.
+  Elles sont définies directement dans About.tsx en tableaux locaux.
+
+  Pour modifier l'éducation : chercher const education = [ dans About.tsx
+  Pour modifier les compétences : chercher const skillGroups = [ dans About.tsx
+  Pour modifier les contacts : chercher href="mailto: dans About.tsx
+  Pour modifier la bio : chercher <div className={styles.intro}> dans About.tsx
+
+================================================================================
+FIN DE L'AUDIT
+================================================================================
